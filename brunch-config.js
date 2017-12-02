@@ -5,7 +5,7 @@ exports.files = {
 };
 
 exports.paths = {
-  watched: ['app', 'app/assets']
+  watched: ['app', 'app/buh']
 };
 
 exports.plugins = {
