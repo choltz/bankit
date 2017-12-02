@@ -2079,7 +2079,7 @@ init-skeleton@~1.0:
     ncp "^2.0.0"
     normalize-git-url "~3.0.1"
 
-insert-css@^2.0.0:
+insert-css@, insert-css@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/insert-css/-/insert-css-2.0.0.tgz#eb5d1097b7542f4c79ea3060d3aee07d053880f4"
 
