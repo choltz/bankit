@@ -6,6 +6,6 @@
 
 <style>
   .sidebar {
-    backgrond-color: #225599;
+    background-color: #225599;
   }
 </style>
