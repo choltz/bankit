@@ -11,5 +11,6 @@ exports.paths = {
 exports.plugins = {
   "babel": {
     presets: ['es2015', 'stage-2']
-  }
+  },
+  "vue-brunch": ""
 };

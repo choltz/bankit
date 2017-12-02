@@ -17,6 +17,7 @@
     "es2015": "",
     "brunch": "^2",
     "clean-css-brunch": "^2",
-    "uglify-js-brunch": "^2"
+    "uglify-js-brunch": "^2",
+    "vue-brunch": ""
   }
 }
