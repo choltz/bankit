@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <sidebar></sidebar>
-
-    Hi, this is a test.<br/>
-    {{words}}!<br/>
-    {{text()}}!<br/>
-    {{textAgain()}}!
-    {{computedWords}}
-
-    <div><a href="">buh</a></div>
+  <div class="app">
+    <aside>
+      <sidebar></sidebar>
+    </aside>
+    <div>
+      Hi, this is a test.<br/>
+      {{words}}!<br/>
+      {{text()}}!<br/>
+      {{textAgain()}}!
+      {{computedWords}}
+    </div>
   </div>
 </template>
 

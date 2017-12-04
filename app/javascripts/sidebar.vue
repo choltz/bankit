@@ -1,11 +1,57 @@
 <template>
   <div class="sidebar">
-    This is the sidebar
+    My Budget
+    <ul class="nav-main" >
+      <li>
+        <i class="material-icons"> mail </i>
+        <span>Budget</span>
+      </li>
+      <li>
+        <i class="material-icons">assessment</i>
+        <span>Reports</span>
+      </li>
+      <li>
+        <i class="material-icons">account_balance</i>
+        <span>All Accounts</span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <style>
   .sidebar {
-    background-color: #225599;
+    font-size:   1.2em;
+    font-weight: bold;
+  }
+
+  .sidebar li {
+    color:                  white;
+    padding:                .5em 0;
+    -webkit-font-smoothing: subpixel-antialiased;
+    letter-spacing:         normal;
+    word-spacing:           normal;
+    text-rendering:         auto;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding:    0px;
+    margin:     0px;
+  }
+
+  .sidebar .nav-main {
+    font-weight: 300;
+  }
+
+  .sidebar .nav-main .material-icons {
+    vertical-align: middle;
+  }
+
+  .sidebar .nav-main span {
+    display: inline-block;
+    padding-top: .05em;
+    margin: -.05em .375em 0 .375em;
+    line-height: 2em;
+    vertical-align: middle;
   }
 </style>

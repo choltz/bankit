@@ -1,4 +1,43 @@
 body {
+  font-family: 'Lato', Arial, 'Helvetica Neue', Helvetica, sans-serif;
   padding: 0;
   margin: 0;
+}
+
+aside {
+  color: white;
+  background: linear-gradient(to bottom, #34aebe, #23809b);
+  padding: .5em;
+  height: 100vh;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 260px auto;
+}
+
+/* Used to wire in material icons */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
