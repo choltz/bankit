@@ -10,33 +10,11 @@
 </template>
 
 <script>
-import sidebar from './sidebar.vue';
+  import Sidebar from './sidebar.vue';
 
-export default {
-  components: {
-    sidebar
-  },
-
-  data() {
-    return {
-      words: 'snaize'
-    };
-  },
-
-  computed: {
-    computedWords() {
-      return 'computed words';
-    }
-  },
-
-  methods: {
-    text() {
-      return 'buh';
-    },
-
-    textAgain () {
-      return 'text again';
+  export default {
+    components: {
+      Sidebar
     }
   }
-}
 </script>
