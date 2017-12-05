@@ -4,6 +4,7 @@
       <sidebar></sidebar>
     </aside>
     <div>
+      <router-view></router-view>
       Hi, this is a test.<br/>
       {{words}}!<br/>
       {{text()}}!<br/>
@@ -28,13 +29,13 @@ export default {
   },
 
   computed: {
-    computedWords () {
+    computedWords() {
       return 'computed words';
     }
   },
 
   methods: {
-    text () {
+    text() {
       return 'buh';
     },
 

@@ -5,6 +5,7 @@
       <li>
         <i class="material-icons"> mail </i>
         <span>Budget</span>
+        <router-link to="/budget">Go to Budget</router-link>
       </li>
       <li>
         <i class="material-icons">assessment</i>
