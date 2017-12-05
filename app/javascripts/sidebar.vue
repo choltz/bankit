@@ -8,11 +8,11 @@
       </li>
       <li>
         <i class="material-icons">assessment</i>
-        <span>Reports</span>
+        <router-link to="/reports">Reports</router-link>
       </li>
       <li>
         <i class="material-icons">account_balance</i>
-        <span>All Accounts</span>
+        <router-link to="/accounts">All Accounts</router-link>
       </li>
     </ul>
   </div>

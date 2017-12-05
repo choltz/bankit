@@ -5,11 +5,6 @@
     </aside>
     <div>
       <router-view></router-view>
-      Hi, this is a test.<br/>
-      {{words}}!<br/>
-      {{text()}}!<br/>
-      {{textAgain()}}!
-      {{computedWords}}
     </div>
   </div>
 </template>
