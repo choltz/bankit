@@ -4,8 +4,7 @@
     <ul class="nav-main" >
       <li>
         <i class="material-icons"> mail </i>
-        <span>Budget</span>
-        <router-link to="/budget">Go to Budget</router-link>
+        <router-link to="/budget">Budget</router-link>
       </li>
       <li>
         <i class="material-icons">assessment</i>
@@ -34,6 +33,16 @@
     text-rendering:         auto;
   }
 
+  .sidebar li:hover {
+    background-color: #1E889C;
+    cursor: pointer;
+  }
+
+  .sidebar li a {
+    text-decoration: none;
+    color: white;
+  }
+
   .sidebar ul {
     list-style: none;
     padding:    0px;
@@ -48,7 +57,7 @@
     vertical-align: middle;
   }
 
-  .sidebar .nav-main span {
+  .sidebar .nav-main a {
     display: inline-block;
     padding-top: .05em;
     margin: -.05em .375em 0 .375em;
