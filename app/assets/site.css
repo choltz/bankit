@@ -7,7 +7,6 @@ body {
 aside {
   color: white;
   background: linear-gradient(to bottom, #34aebe, #23809b);
-  padding: .5em;
   height: 100vh;
 }
 

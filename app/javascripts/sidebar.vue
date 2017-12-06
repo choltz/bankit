@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    My Budget
+    <div class="budget-dropdown">My Budget</div>
     <ul class="nav-main" >
       <li>
         <i class="material-icons"> mail </i>
@@ -12,7 +12,7 @@
       </li>
       <li>
         <i class="material-icons">account_balance</i>
-        <router-link to="/accounts">All Accounts</router-link>
+        <router-link to="/reports">All Accounts</router-link>
       </li>
     </ul>
   </div>
@@ -20,13 +20,18 @@
 
 <style>
   .sidebar {
+    padding: .5em 0;
     font-size:   1.2em;
     font-weight: bold;
   }
 
+  .sidebar .budget-dropdown {
+    padding: 0 .5em;
+  }
+
   .sidebar li {
     color:                  white;
-    padding:                .5em 0;
+    padding:                .5em .5em;
     -webkit-font-smoothing: subpixel-antialiased;
     letter-spacing:         normal;
     word-spacing:           normal;
