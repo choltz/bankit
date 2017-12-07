@@ -3,17 +3,20 @@
     <aside>
       <sidebar></sidebar>
     </aside>
-    <div>
+    <main>
+      <message></message>
       <router-view></router-view>
-    </div>
+    </main>
   </div>
 </template>
 
 <script>
+  import Message from './message.vue';
   import Sidebar from './sidebar.vue';
 
   export default {
     components: {
+      Message,
       Sidebar
     }
   }

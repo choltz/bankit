@@ -12,7 +12,7 @@
       </li>
       <li>
         <i class="material-icons">account_balance</i>
-        <router-link to="/reports">All Accounts</router-link>
+        <router-link to="/accounts">All Accounts</router-link>
       </li>
     </ul>
   </div>
