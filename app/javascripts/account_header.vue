@@ -3,9 +3,9 @@
     <div class="title">
       All Accounts
     </div>
-    <div>Cleared Balance</div>
-    <div>Uncleared Balance</div>
-    <div>Working Balance</div>
+    <div class="details">Cleared Balance</div>
+    <div class="details">Uncleared Balance</div>
+    <div class="details">Working Balance</div>
   </div>
 </template>
 
@@ -26,5 +26,11 @@
     border-radius: 5px;
     font-weight: 300;
     font-size: 1.3em;
+  }
+
+  .account-header .details {
+    padding: .5em;
+    display: table-cell;
+    vertical-align: middle;
   }
 </style>

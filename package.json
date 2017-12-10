@@ -9,13 +9,14 @@
     "start": "brunch watch --server",
     "build": "brunch build --production"
   },
-  "dependencies": {},
+  "dependencies": {
+    "global": "^4.3.2"
+  },
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "babel-brunch": "",
     "babel-plugin-transform-runtime": "",
     "babel-preset-es2015": "",
-    "brunch": "^2",
     "clean-css-brunch": "^2",
     "es2015": "",
     "insert-css": "",
