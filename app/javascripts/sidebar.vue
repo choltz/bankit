@@ -15,8 +15,29 @@
         <router-link to="/accounts">All Accounts</router-link>
       </li>
     </ul>
+    {{accounts}}
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      words: 'snaize'
+    };
+  },
+
+  computed: {
+    accounts() {
+      debugger
+      return 'computed words';
+    }
+  },
+
+  methods: {
+  }
+}
+</script>
 
 <style>
   .sidebar {
