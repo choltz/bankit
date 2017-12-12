@@ -10,9 +10,8 @@ import "vueify/lib/insert-css";
 
 Vue.config.productionTip = false;
 
-const routes = Routes.draw();
 const router = new VueRouter({
-  routes: routes,
+  routes: Routes,
   mode:   'history'
 });
 

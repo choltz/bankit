@@ -6,13 +6,11 @@ import Accounts  from 'javascripts/accounts.vue';
 
 Vue.use(VueRouter);
 
-export default class {
-  static draw() {
-    return [
-      { path: '/',         component: Budget },
-      { path: '/budget',   component: Budget },
-      { path: '/reports',  component: Reports },
-      { path: '/accounts', component: Accounts }
-    ];
-  }
-};
+let router = [
+  { path: '/',         component: Budget },
+  { path: '/budget',   component: Budget },
+  { path: '/reports',  component: Reports },
+  { path: '/accounts', component: Accounts }
+];
+
+export default router;
