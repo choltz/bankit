@@ -29,7 +29,7 @@ export default {
 
   computed: {
     accounts() {
-      debugger
+      /* debugger*/
       return 'computed words';
     }
   },

@@ -6,11 +6,14 @@ import Accounts  from 'javascripts/accounts.vue';
 
 Vue.use(VueRouter);
 
-let router = [
+let routes = [
   { path: '/',         component: Budget },
   { path: '/budget',   component: Budget },
   { path: '/reports',  component: Reports },
   { path: '/accounts', component: Accounts }
 ];
 
-export default router;
+export default new VueRouter({
+  routes: routes,
+  mode:   'history'
+});
