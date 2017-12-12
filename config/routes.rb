@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/'      => 'home#index'
-  get '/*page' => 'home#index'
+  # top-level routes should all resolve to home; the client-side router will
+  # handle that.
+  get '/'         => 'home#index'
+  get '/budget'   => 'home#index'
+  get '/reports'  => 'home#index'
+  get '/accounts' => 'home#index'
 
   get 'accounts/active' => 'accounts#active'
 end
