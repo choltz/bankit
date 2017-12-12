@@ -3,6 +3,7 @@ class CreateAccounts < ActiveRecord::Migration[5.1]
     create_table :accounts do |t|
       t.text    :name
       t.text    :description
+      t.text    :account_type
       t.text    :note
       t.integer :user_id
       t.boolean :active

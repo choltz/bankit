@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+account_data = (1..3).zip(['checking', 'credit card', 'savings'])
+
+account_data.each do |count, type|
+  Account.create! name:         "Account #{count}",
+                  description:  "account description #{count}",
+                  note:         "Notes about the account #{count}",
+                  account_type: type,
+                  user_id:      1,
+                  active:       true
+end

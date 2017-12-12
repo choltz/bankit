@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171209220355) do
   create_table "accounts", force: :cascade do |t|
     t.text "name"
     t.text "description"
+    t.text "account_type"
     t.text "note"
     t.integer "user_id"
     t.boolean "active"
