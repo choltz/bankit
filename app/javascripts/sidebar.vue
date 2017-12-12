@@ -29,8 +29,7 @@ export default {
 
   computed: {
     accounts() {
-      /* debugger*/
-      return 'computed words';
+      return this.$store.state.accounts;
     }
   },
 
