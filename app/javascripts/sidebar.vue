@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -28,9 +30,9 @@ export default {
   },
 
   computed: {
-    accounts() {
-      return this.$store.state.accounts;
-    }
+    ...mapState([
+      'accounts'
+    ])
   },
 
   methods: {
