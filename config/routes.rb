@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get '/reports'  => 'home#index'
   get '/accounts' => 'home#index'
 
-  get 'accounts/active' => 'accounts#active'
+  get 'api/accounts/active' => 'accounts#active'
 end

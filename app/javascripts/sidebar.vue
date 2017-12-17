@@ -20,24 +20,30 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+  import { mapState } from 'vuex';
 
-export default {
-  data() {
-    return {
-      words: 'snaize'
-    };
-  },
+  export default {
+    data() {
+      return {
+        words: 'snaize'
+      };
+    },
 
-  computed: {
-    ...mapState([
-      'accounts'
-    ])
-  },
+    computed: {
+      ...mapState([
+        'accounts'
+      ])
+    },
 
-  methods: {
+    methods: {
+    },
+
+    mounted: function() {
+      this.$nextTick (()=> {
+        this.$store.dispatch('getAccounts');
+      })
+    }
   }
-}
 </script>
 
 <style>
