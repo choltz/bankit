@@ -15,7 +15,9 @@
         <router-link to="/accounts">All Accounts</router-link>
       </li>
     </ul>
-    {{accounts}}
+    <div v-for="account in accounts">
+      <div>{{account.name}}</div>
+    </div>
   </div>
 </template>
 
@@ -48,7 +50,7 @@
 
 <style>
   .sidebar {
-    padding: .5em 0;
+    padding:     .5em 0;
     font-size:   1.2em;
     font-weight: bold;
   }

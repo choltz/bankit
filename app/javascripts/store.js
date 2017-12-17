@@ -1,11 +1,12 @@
 import Vue       from 'vue';
 import Vuex      from 'vuex';
+import axios     from 'axios';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    accounts:['test1']
+    accounts: []
   },
 
   mutations: {
@@ -16,6 +17,10 @@ export default new Vuex.Store({
 
   actions: {
     getAccounts(context) {
+      axios.get('/api/accounts/active')
+        .then((results) =>{
+          context.commit('setAccounts', results.data);
+        });
     }
   }
 });
