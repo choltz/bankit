@@ -15,35 +15,17 @@
         <router-link to="/accounts">All Accounts</router-link>
       </li>
     </ul>
-    <div v-for="account in accounts">
-      <div>{{account.name}}</div>
-    </div>
+
+    <account-list></account-list>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import AccountList    from './account_list.vue';
 
   export default {
-    data() {
-      return {
-        words: 'snaize'
-      };
-    },
-
-    computed: {
-      ...mapState([
-        'accounts'
-      ])
-    },
-
-    methods: {
-    },
-
-    mounted: function() {
-      this.$nextTick (()=> {
-        this.$store.dispatch('getAccounts');
-      })
+    components: {
+      AccountList
     }
   }
 </script>
@@ -98,5 +80,9 @@
     margin: -.05em .375em 0 .375em;
     line-height: 2em;
     vertical-align: middle;
+  }
+
+  .account-list {
+    padding-left: 2.4em;
   }
 </style>
