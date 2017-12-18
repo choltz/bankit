@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     accounts:       [],
-    currentAccount: null
+    // TODO: relace this with an account model
+    currentAccount: { id: null, name: 'All Accounts' }
   },
 
   mutations: {
@@ -22,10 +23,13 @@ export default new Vuex.Store({
 
   actions: {
     getAccounts(context) {
-      axios.get('/api/accounts/active')
-        .then((results) =>{
-          context.commit('setAccounts', results.data);
-        });
+      return new Promise((resolve) => {
+        axios.get('/api/accounts/active')
+          .then((results) =>{
+            context.commit('setAccounts', results.data);
+            resolve();
+          });
+      });
     },
 
     setCurrentAccount(context, account) {
