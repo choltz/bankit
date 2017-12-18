@@ -6,12 +6,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    accounts: []
+    accounts:       [],
+    currentAccount: null
   },
 
   mutations: {
     setAccounts(state, payload) {
       state.accounts = payload;
+    },
+
+    setCurrentAccount(state, payload) {
+      state.currentAccount = payload;
     }
   },
 
@@ -21,6 +26,10 @@ export default new Vuex.Store({
         .then((results) =>{
           context.commit('setAccounts', results.data);
         });
+    },
+
+    setCurrentAccount(context, account) {
+      context.commit('setCurrentAccount', account);
     }
   }
 });

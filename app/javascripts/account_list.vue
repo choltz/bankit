@@ -2,7 +2,9 @@
   <div class="account-list">
     <div class="title">BUDGET</div>
     <ul v-for="account in accounts">
-      <li>{{account.name}}</li>
+      <li>
+        <router-link :to="accountPath(account)">{{account.name}}</router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -19,6 +21,9 @@
     },
 
     methods: {
+      accountPath: function(account) {
+        return '/accounts/' + account.id;
+      },
       ...mapActions([
         'getAccounts'
       ])

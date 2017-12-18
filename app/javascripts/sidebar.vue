@@ -83,6 +83,7 @@
   }
 
   .account-list {
+    padding-top:  1em;
     padding-left: 2.4em;
   }
 </style>

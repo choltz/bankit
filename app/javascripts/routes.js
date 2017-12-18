@@ -7,10 +7,11 @@ import Accounts  from 'javascripts/accounts.vue';
 Vue.use(VueRouter);
 
 let routes = [
-  { path: '/',         component: Budget },
-  { path: '/budget',   component: Budget },
-  { path: '/reports',  component: Reports },
-  { path: '/accounts', component: Accounts }
+  { path: '/',             component: Budget },
+  { path: '/budget',       component: Budget },
+  { path: '/reports',      component: Reports },
+  { path: '/accounts',     component: Accounts },
+  { path: '/accounts/:id', component: Accounts }
 ];
 
 export default new VueRouter({
