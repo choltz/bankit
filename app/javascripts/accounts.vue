@@ -2,7 +2,6 @@
   <div class="accounts">
     <account-header></account-header>
     <action-bar></action-bar>
-    {{currentAccount.name}}<br/>
     These are the accounts
   </div>
 </template>

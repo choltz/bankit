@@ -1,13 +1,25 @@
 <template>
   <div class="account-header">
     <div class="title">
-      All Accounts
+      {{currentAccount.name}}
     </div>
     <div class="details">Cleared Balance</div>
     <div class="details">Uncleared Balance</div>
     <div class="details">Working Balance</div>
   </div>
 </template>
+
+<script>
+  import { mapState   } from 'vuex';
+
+  export default {
+    computed: {
+      ...mapState([
+        'currentAccount',
+      ])
+    }
+  }
+</script>
 
 <style>
   .account-header {
