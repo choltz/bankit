@@ -4,36 +4,41 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-    accounts:       [],
-    // TODO: relace this with an account model
-    currentAccount: { id: null, name: 'All Accounts' }
-  },
-
-  mutations: {
-    setAccounts(state, payload) {
-      state.accounts = payload;
+function builder(accounts, currentAccount) {
+  return new Vuex.Store({
+    state: {
+      accounts: accounts,
+      currentAccount: currentAccount
+      // TODO: relace this with an account model
+      // currentAccount: { id: null, name: 'All Accounts' }
     },
 
-    setCurrentAccount(state, payload) {
-      state.currentAccount = payload;
-    }
-  },
+    mutations: {
+      setAccounts(state, payload) {
+        state.accounts = payload;
+      },
 
-  actions: {
-    getAccounts(context) {
-      return new Promise((resolve) => {
-        axios.get('/api/accounts/active')
-          .then((results) =>{
-            context.commit('setAccounts', results.data);
-            resolve();
-          });
-      });
+      setCurrentAccount(state, payload) {
+        state.currentAccount = payload;
+      }
     },
 
-    setCurrentAccount(context, account) {
-      context.commit('setCurrentAccount', account);
+    actions: {
+      // getAccounts(context) {
+      //   return new Promise((resolve) => {
+      //     axios.get('/api/accounts/active')
+      //       .then((results) =>{
+      //         context.commit('setAccounts', results.data);
+      //         resolve();
+      //       });
+      //   });
+      // },
+
+      setCurrentAccount(context, account) {
+        context.commit('setCurrentAccount', account);
+      }
     }
-  }
-});
+  });
+}
+
+export default builder;

@@ -15,14 +15,14 @@
 
   export default {
     computed: {
-      calculateCurrentAccount: function() {
-        let account = this.accounts.find((account) => {
-          return account.id == this.$route.params.id
-        });
+      /* calculateCurrentAccount: function() {
+       *   let account = this.accounts.find((account) => {
+       *     return account.id == this.$route.params.id
+       *   });
 
-        return account || { id: null, name: 'All Accounts' }
-      },
-
+       *   return account || { id: null, name: 'All Accounts' }
+       * },
+       */
       ...mapState([
         'accounts',
         'currentAccount'
@@ -37,16 +37,6 @@
         'getAccounts',
         'setCurrentAccount'
       ])
-    },
-
-    mounted: function() {
-      // Get accounts and then set the current account based on the route
-      this.$nextTick (() => {
-        this.getAccounts()
-            .then(() => {
-              this.setCurrentAccount(this.calculateCurrentAccount);
-            });
-      })
     }
   }
 </script>
