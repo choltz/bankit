@@ -1,16 +1,15 @@
-import Vue   from 'vue';
-import Vuex  from 'vuex';
-import axios from 'axios';
+import Vue     from 'vue';
+import Vuex    from 'vuex';
+import axios   from 'axios';
+import Account from 'javascripts/models/account.js';
 
 Vue.use(Vuex);
 
 function builder(accounts, currentAccount) {
   return new Vuex.Store({
     state: {
-      accounts: accounts,
-      currentAccount: currentAccount
-      // TODO: relace this with an account model
-      // currentAccount: { id: null, name: 'All Accounts' }
+      accounts:       accounts,
+      currentAccount: currentAccount || new Account({})
     },
 
     mutations: {
@@ -24,16 +23,6 @@ function builder(accounts, currentAccount) {
     },
 
     actions: {
-      // getAccounts(context) {
-      //   return new Promise((resolve) => {
-      //     axios.get('/api/accounts/active')
-      //       .then((results) =>{
-      //         context.commit('setAccounts', results.data);
-      //         resolve();
-      //       });
-      //   });
-      // },
-
       setCurrentAccount(context, account) {
         context.commit('setCurrentAccount', account);
       }
