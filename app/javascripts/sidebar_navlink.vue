@@ -2,7 +2,7 @@
   <div class="sidebar-navlink">
     <router-link :to="route">
       <li>
-        <i  class="material-icons"> {{icon}} </i>
+        <i class="material-icons"> {{icon}} </i>
         {{text}}
       </li>
     </router-link>
@@ -40,6 +40,14 @@
   .sidebar-navlink li:hover {
     background-color: #1E889C;
     cursor: pointer;
+  }
+
+  .sidebar-navlink li:hover i {
+    visibility: visible;
+  }
+
+  .sidebar-navlink li i {
+    visibility: hidden;
   }
 
   .sidebar-navlink a {
