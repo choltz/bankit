@@ -2,11 +2,8 @@
   <div class="sidebar-navlink">
     <router-link :to="route">
       <li>
-        <span v-if="hasIcon">
-          <i  class="material-icons"> {{icon}} </i>
-          {{text}}
-        </span>
-        <span v-else> {{text}} </span>
+        <i  class="material-icons"> {{icon}} </i>
+        {{text}}
       </li>
     </router-link>
   </div>
@@ -33,7 +30,7 @@
 <style>
   .sidebar-navlink li {
     color:                  white;
-    padding:                .5em .5em .5em 0;
+    padding:                .5em;
     -webkit-font-smoothing: subpixel-antialiased;
     letter-spacing:         normal;
     word-spacing:           normal;

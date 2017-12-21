@@ -1,8 +1,9 @@
 <template>
   <div class="account-list">
-    <div class="title">BUDGET</div>
-    <ul v-for="account in accounts">
-      <sidebar-navlink icon   = ""
+    <div class="title">My Accounts</div>
+    <ul>
+      <sidebar-navlink v-for  = "account in accounts"
+                       icon   = "mode_edit"
                        :route = "accountPath(account)"
                        :text  = "account.name">
       </sidebar-navlink>
@@ -49,12 +50,11 @@
 
 <style>
   .account-list .title {
-    font-size: .7em;
-    font-weight: 500;
+    padding-left: .5em;
   }
 
   .account-list li {
     font-size: 1em;
     font-weight: 300;
-  }
+   }
 </style>
