@@ -8,6 +8,7 @@ import store   from 'javascripts/store.js';
 import axios   from 'axios';
 import Account from 'javascripts/models/account.js';
 
+import * as _ from 'lodash';
 import "vueify/lib/insert-css";
 
 Vue.config.productionTip = false;

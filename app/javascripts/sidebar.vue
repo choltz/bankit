@@ -1,19 +1,19 @@
 <template>
   <div class="sidebar">
     <div class="budget-dropdown">My Budget</div>
-    <ul class="nav-main" >
-      <li>
-        <i class="material-icons"> mail </i>
-        <router-link to="/budget">Budget</router-link>
-      </li>
-      <li>
-        <i class="material-icons">assessment</i>
-        <router-link to="/reports">Reports</router-link>
-      </li>
-      <li>
-        <i class="material-icons">account_balance</i>
-        <router-link to="/accounts">All Accounts</router-link>
-      </li>
+    <ul class="nav-main">
+      <sidebar-navlink icon  = "mail"
+                       route = "/budget"
+                       text  = "Budget">
+      </sidebar-navlink>
+      <sidebar-navlink icon  = "assessment"
+                       route = "/reports"
+                       text  = "Reports">
+      </sidebar-navlink>
+      <sidebar-navlink icon  = "account_balance"
+                       route = "/accounts"
+                       text  = "All Accounts">
+      </sidebar-navlink>
     </ul>
 
     <account-list></account-list>
@@ -22,10 +22,12 @@
 
 <script>
   import AccountList    from './account_list.vue';
+  import SidebarNavlink from './sidebar_navlink.vue';
 
   export default {
     components: {
-      AccountList
+      AccountList,
+      SidebarNavlink
     }
   }
 </script>
@@ -75,15 +77,19 @@
   }
 
   .sidebar .nav-main a {
-    display: inline-block;
-    padding-top: .05em;
-    margin: -.05em .375em 0 .375em;
-    line-height: 2em;
+    text-decoration: none;
     vertical-align: middle;
+  }
+
+  .sidebar .nav-main li {
+    padding: em 0;
+  }
+
+  .sidebar .nav-main i {
+    padding-right: .5em;
   }
 
   .account-list {
     padding-top:  1em;
-    padding-left: 2.4em;
   }
 </style>

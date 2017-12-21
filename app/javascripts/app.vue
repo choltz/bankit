@@ -13,8 +13,8 @@
 <script>
   import { mapActions } from 'vuex';
   import { mapState   } from 'vuex';
-  import Message   from './message.vue';
-  import Sidebar   from './sidebar.vue';
+  import Message        from './message.vue';
+  import Sidebar        from './sidebar.vue';
 
   export default {
     components: {

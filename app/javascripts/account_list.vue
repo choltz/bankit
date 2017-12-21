@@ -2,9 +2,10 @@
   <div class="account-list">
     <div class="title">BUDGET</div>
     <ul v-for="account in accounts">
-      <li>
-        <router-link :to="accountPath(account)">{{account.name}}</router-link>
-      </li>
+      <sidebar-navlink icon   = ""
+                       :route = "accountPath(account)"
+                       :text  = "account.name">
+      </sidebar-navlink>
     </ul>
   </div>
 </template>
@@ -12,8 +13,13 @@
 <script>
   import { mapState   } from 'vuex';
   import { mapActions } from 'vuex';
+  import SidebarNavlink from './sidebar_navlink.vue';
 
   export default {
+    components: {
+      SidebarNavlink
+    },
+
     computed: {
       /* calculateCurrentAccount: function() {
        *   let account = this.accounts.find((account) => {
@@ -43,10 +49,12 @@
 
 <style>
   .account-list .title {
-    font-size: .8em;
+    font-size: .7em;
+    font-weight: 500;
   }
 
   .account-list li {
     font-size: 1em;
+    font-weight: 300;
   }
 </style>
