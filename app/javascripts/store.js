@@ -9,7 +9,7 @@ function builder(accounts, currentAccount) {
   return new Vuex.Store({
     state: {
       accounts:       accounts,
-      currentAccount: currentAccount || new Account({})
+      currentAccount: currentAccount || new Account.allAccounts()
     },
 
     mutations: {

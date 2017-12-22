@@ -15,6 +15,7 @@
   import { mapState   } from 'vuex';
   import Message        from './message.vue';
   import Sidebar        from './sidebar.vue';
+  import Account        from 'javascripts/models/account.js';
 
   export default {
     components: {
@@ -28,7 +29,7 @@
           return account.id == this.$route.params.id
         });
 
-        return account || { id: null, name: 'All Accounts' }
+        return account || Account.allAccounts();
       },
 
       ...mapState([
