@@ -2,17 +2,17 @@
   <div class="sidebar">
     <div class="budget-dropdown">My Budget</div>
     <ul class="nav-main">
-      <sidebar-navlink icon  = "mail"
-                       route = "/budget"
-                       text  = "Budget">
+      <sidebar-navlink icon = "mail"
+                       path = "/budget"
+                       text = "Budget">
       </sidebar-navlink>
-      <sidebar-navlink icon  = "assessment"
-                       route = "/reports"
-                       text  = "Reports">
+      <sidebar-navlink icon = "assessment"
+                       path = "/reports"
+                       text = "Reports">
       </sidebar-navlink>
-      <sidebar-navlink icon  = "account_balance"
-                       route = "/accounts"
-                       text  = "All Accounts">
+      <sidebar-navlink icon = "account_balance"
+                       path = "/accounts"
+                       text = "All Accounts">
       </sidebar-navlink>
     </ul>
 

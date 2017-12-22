@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-navlink">
-    <router-link :to="route">
+    <router-link :to="path">
       <li :class="iconDisplayClass">
         <i class="material-icons"> {{icon}} </i>
         {{text}}
@@ -15,16 +15,16 @@
   export default {
     // icon        - material icon name to use in this link
     // iconDisplay - always or hover
-    // route       - url this link navigates to
+    // path        - url this link navigates to
     // text        - link text
     props: {
       icon:        { default:  '' },
       iconDisplay: { default:  'always' },
-      route:       { default : '' },
+      path:        { default : '' },
       text:        { default:  '' }
     },
 
-    computed: {
+   computed: {
       // Return whether or not this link has an icon
       hasIcon() {
         return !_.isEmpty(this.icon);
@@ -33,10 +33,20 @@
       // Build the icon behavior classes based on the iconDisplay property
       iconDisplayClass() {
         if (this.iconDisplay == 'always') {
-          return "sidebar-navlink-item sidebar-navlink-alwasy-visible";
-        } else {
-          return "sidebar-navlink-item sidebar-navlink-visible-on-hover";
+          return this.selectedClass + ' sidebar-navlink-item sidebar-navlink-alwasy-visible';
         }
+
+        return this.selectedClass + ' sidebar-navlink-item sidebar-navlink-visible-on-hover';
+      },
+
+      // Returns whether or not the link has been selected
+      isSelected() {
+        return this.path == this.$route.path;
+      },
+
+      // Return the class to manage the selected status of the link
+      selectedClass() {
+        return this.isSelected ? 'sidebar-navlink-selected' : '';
       }
     }
   }
@@ -55,6 +65,10 @@
   .sidebar-navlink-item:hover {
     background-color: #1E889C;
     cursor: pointer;
+  }
+
+  .sidebar-navlink-selected {
+    background-color: #00596f;
   }
 
   .sidebar-navlink-visible-on-hover:hover i {

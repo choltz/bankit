@@ -5,7 +5,7 @@
       <sidebar-navlink v-for        = "account in accounts"
                        icon         = "mode_edit"
                        icon-display = "hover"
-                       :route       = "accountPath(account)"
+                       :path        = "accountPath(account)"
                        :text        = "account.name">
       </sidebar-navlink>
     </ul>
