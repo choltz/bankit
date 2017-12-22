@@ -2,7 +2,7 @@
 // the app container, etc.
 
 import Vue     from 'vue';
-import App     from 'javascripts/app.vue';
+import App     from 'javascripts/components/app.vue';
 import router  from 'javascripts/routes.js';
 import store   from 'javascripts/store.js';
 import axios   from 'axios';
