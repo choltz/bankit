@@ -2,10 +2,11 @@
   <div class="account-list">
     <div class="title">My Accounts</div>
     <ul>
-      <sidebar-navlink v-for  = "account in accounts"
-                       icon   = "mode_edit"
-                       :route = "accountPath(account)"
-                       :text  = "account.name">
+      <sidebar-navlink v-for        = "account in accounts"
+                       icon         = "mode_edit"
+                       icon-display = "hover"
+                       :route       = "accountPath(account)"
+                       :text        = "account.name">
       </sidebar-navlink>
     </ul>
   </div>
