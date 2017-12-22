@@ -31,7 +31,6 @@
       ...mapActions([
         'setCurrentAccount'
       ])
-    },
-
+    }
   }
 </script>
