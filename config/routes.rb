@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get '/accounts'     => 'home#index'
   get '/accounts/:id' => 'home#index'
 
-  get 'api/accounts/active' => 'accounts#active'
+  get 'api/accounts/active'  => 'accounts#active'
+  get 'api/transactions/:id' => 'transactions#index'
 end

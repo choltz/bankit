@@ -47,9 +47,9 @@
     watch: {
       // Update the current account when the route changes
       '$route' (to, from) {
-        // TODO: need a condition here to only update the current account
-        // if the new route is a dynamic account route (/accounts/:id)
-        this.setCurrentAccount(this.calculateCurrentAccount);
+        if (this.$route.path.match(/^\/accounts/)) {
+          this.setCurrentAccount(this.calculateCurrentAccount);
+        }
       }
     }
   }

@@ -9,7 +9,8 @@ function builder(accounts, currentAccount) {
   return new Vuex.Store({
     state: {
       accounts:       accounts,
-      currentAccount: currentAccount || new Account.allAccounts()
+      currentAccount: currentAccount || new Account.allAccounts(),
+      transactions:   []
     },
 
     mutations: {
@@ -19,12 +20,23 @@ function builder(accounts, currentAccount) {
 
       setCurrentAccount(state, payload) {
         state.currentAccount = payload;
+      },
+
+      setTransactions(state, payload) {
+        state.transactions = payload;
       }
     },
 
     actions: {
-      setCurrentAccount(context, account) {
-        context.commit('setCurrentAccount', account);
+      setCurrentAccount({commit, dispatch}, account) {
+        axios.get('/api/transactions/' + account.id)
+          .then((results) => {
+            commit('setCurrentAccount', account);
+            commit('setTransactions',   results.data);
+          })
+          .catch((results) => {
+            debugger
+          });
       }
     }
   });

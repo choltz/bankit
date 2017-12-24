@@ -17,7 +17,7 @@ account_data.each do |count, type|
                             active:       true
 
   (1..9).each do
-    Transaction.create! account: account,
+    Transaction.create! account:        account,
                         transaction_at: DateTime.now,
                         payee:          'Payee',
                         category:       'Category',
@@ -25,7 +25,7 @@ account_data.each do |count, type|
                         outflow:        10.00
   end
 
-  Transaction.create! account: account,
+  Transaction.create! account:        account,
                       transaction_at: DateTime.now,
                       payee:          'Payee',
                       category:       'Category',

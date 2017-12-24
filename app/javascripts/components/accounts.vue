@@ -2,7 +2,7 @@
   <div class="accounts">
     <account-header></account-header>
     <action-bar></action-bar>
-    These are the accounts
+    {{transactions}}
   </div>
 </template>
 
@@ -23,7 +23,7 @@
       ...mapState([
         'accounts',
         'currentAccount',
-        'getCurrentAccount'
+        'transactions'
       ])
     },
 
