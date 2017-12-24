@@ -17,7 +17,7 @@
       <tr v-for="transaction in transactions">
         <td></td>
         <td></td>
-        <td>{{transaction.transaction_at}}</td>
+        <td>{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
         <td>{{transaction.payee}}</td>
         <td>{{transaction.category}}</td>
         <td>{{transaction.memo}}</td>
@@ -32,7 +32,7 @@
 <script>
   import { mapState   } from 'vuex';
   import { mapActions } from 'vuex';
-  import moment         from 'moment';
+  import * as moment         from 'moment';
   import AccountHeader  from './account_header.vue';
   import ActionBar      from './action_bar.vue';
 
@@ -51,6 +51,10 @@
     },
 
     methods: {
+      formatDate(date) {
+        debugger
+      },
+
       ...mapActions([
         'setCurrentAccount'
       ])
@@ -66,10 +70,10 @@
 
   .accounts th,
   .accounts td {
-    font-weight: normal;
-    font-size:   .8em;
-    border-bottom:      1px solid #dee3e8;
-    border-left:      1px solid #dee3e8;
-    padding:    .5em;
+    font-weight:   normal;
+    font-size:     .8em;
+    border-bottom: 1px solid #dee3e8;
+    border-left:   1px solid #dee3e8;
+    padding:       .5em;
   }
 </style>
