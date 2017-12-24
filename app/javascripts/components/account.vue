@@ -32,6 +32,7 @@
 <script>
   import { mapState   } from 'vuex';
   import { mapActions } from 'vuex';
+  import moment         from 'moment';
   import AccountHeader  from './account_header.vue';
   import ActionBar      from './action_bar.vue';
 
@@ -42,7 +43,6 @@
     },
 
     computed: {
-
       ...mapState([
         'accounts',
         'currentAccount',

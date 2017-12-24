@@ -24,6 +24,7 @@
     "es2015": "",
     "insert-css": "",
     "lodash": "",
+    "moment": "",
     "sass-brunch": "",
     "uglify-js-brunch": "^2",
     "vue": "",

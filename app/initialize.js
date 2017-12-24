@@ -6,6 +6,7 @@ import App     from 'javascripts/components/app.vue';
 import router  from 'javascripts/routes.js';
 import store   from 'javascripts/store.js';
 import axios   from 'axios';
+import moment  from 'moment';
 import Account from 'javascripts/models/account.js';
 
 import * as _ from 'lodash';
