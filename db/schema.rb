@@ -29,15 +29,19 @@ ActiveRecord::Schema.define(version: 20171224034945) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.datetime "transaction_at"
-    t.text "payee"
+    t.integer "account_id", null: false
+    t.datetime "transaction_at", null: false
+    t.text "payee", null: false
     t.text "category"
     t.text "memo"
     t.decimal "outflow"
     t.decimal "inflow"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
     t.index ["category"], name: "index_transactions_on_category"
+    t.index ["deleted_at"], name: "index_transactions_on_deleted_at"
     t.index ["inflow"], name: "index_transactions_on_inflow"
     t.index ["outflow"], name: "index_transactions_on_outflow"
     t.index ["payee"], name: "index_transactions_on_payee"

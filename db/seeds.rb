@@ -9,10 +9,26 @@
 account_data = (1..3).zip(['checking', 'credit card', 'savings'])
 
 account_data.each do |count, type|
-  Account.create! name:         "Account #{count}",
-                  description:  "account description #{count}",
-                  note:         "Notes about the account #{count}",
-                  account_type: type,
-                  user_id:      1,
-                  active:       true
+  account = Account.create! name:         "Account #{count}",
+                            description:  "account description #{count}",
+                            note:         "Notes about the account #{count}",
+                            account_type: type,
+                            user_id:      1,
+                            active:       true
+
+  (1..9).each do
+    Transaction.create! account: account,
+                        transaction_at: DateTime.now,
+                        payee:          'Payee',
+                        category:       'Category',
+                        memo:           'Memo',
+                        outflow:        10.00
+  end
+
+  Transaction.create! account: account,
+                      transaction_at: DateTime.now,
+                      payee:          'Payee',
+                      category:       'Category',
+                      memo:           'Memo',
+                      inflow:         10.00
 end
