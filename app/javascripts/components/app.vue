@@ -41,16 +41,25 @@
       ...mapActions([
         'getAccounts',
         'setCurrentAccount'
-      ])
+      ]),
+
+      // If this current path is an account path, then set the current account
+      setCurrentAccountIfAccountPath() {
+        if (this.$route.path.match(/^\/accounts/)) {
+          this.setCurrentAccount(this.calculateCurrentAccount);
+        }
+      }
     },
 
     watch: {
       // Update the current account when the route changes
       '$route' (to, from) {
-        if (this.$route.path.match(/^\/accounts/)) {
-          this.setCurrentAccount(this.calculateCurrentAccount);
-        }
+        this.setCurrentAccountIfAccountPath();
       }
+    },
+
+    mounted: function() {
+      this.setCurrentAccountIfAccountPath();
     }
   }
 </script>
