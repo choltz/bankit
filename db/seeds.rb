@@ -16,19 +16,19 @@ account_data.each do |count, type|
                             user_id:      1,
                             active:       true
 
-  (1..9).each do
+  (1..9).each do |n|
     Transaction.create! account:        account,
                         transaction_at: DateTime.now,
-                        payee:          'Payee',
-                        category:       'Category',
-                        memo:           'Memo',
+                        payee:          "Payee #{account.id} #{n}",
+                        category:       "Category #{account.id} #{n}",
+                        memo:           "Memo #{account.id} #{n}",
                         outflow:        10.00
   end
 
   Transaction.create! account:        account,
                       transaction_at: DateTime.now,
-                      payee:          'Payee',
-                      category:       'Category',
-                      memo:           'Memo',
+                      payee:          'Payee 11',
+                      category:       'Category 11',
+                      memo:           'Memo 11',
                       inflow:         10.00
 end
