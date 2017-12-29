@@ -1,16 +1,19 @@
-import Vue     from 'vue';
-import Vuex    from 'vuex';
-import axios   from 'axios';
-import Account from 'javascripts/models/account.js';
+import Vue         from 'vue';
+import Vuex        from 'vuex';
+import axios       from 'axios';
+import Account     from 'javascripts/models/account.js';
+import Transaction from 'javascripts/models/transaction.js';
+import * as _      from 'lodash';
 
 Vue.use(Vuex);
 
 function builder(accounts, currentAccount) {
   return new Vuex.Store({
     state: {
-      accounts:       accounts,
-      currentAccount: currentAccount || new Account.allAccounts(),
-      transactions:   []
+      accounts:           accounts,
+      currentAccount:     currentAccount || new Account.allAccounts(),
+      currentTransaction: new Transaction(),
+      transactions:       []
     },
 
     mutations: {
@@ -19,7 +22,11 @@ function builder(accounts, currentAccount) {
       },
 
       setCurrentAccount(state, payload) {
-        state.currentAccount = payload;
+
+      },
+
+      setCurrentTransaction(state, payload) {
+        state.currentTransaction = payload;
       },
 
       setTransactions(state, payload) {
@@ -32,11 +39,17 @@ function builder(accounts, currentAccount) {
         axios.get('/api/transactions/' + account.id)
           .then((results) => {
             commit('setCurrentAccount', account);
-            commit('setTransactions',   results.data);
+            commit('setTransactions',   _.map(results.data, (item) => {
+              return new Transaction(item);
+            }));
           })
           .catch((results) => {
             debugger
           });
+      },
+
+      setCurrentTransaction({commit, dispatch}, transaction) {
+        commit('setCurrentTransaction', transaction);
       }
     }
   });

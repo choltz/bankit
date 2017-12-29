@@ -14,7 +14,8 @@
         <th>Inflow</th>
         <th></th>
       </tr>
-      <tr v-for="transaction in transactions">
+      <tr v-for  = "transaction in transactions"
+          @click = "selectTransaction">
         <td></td>
         <td></td>
         <td>{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
@@ -32,7 +33,7 @@
 <script>
   import { mapState   } from 'vuex';
   import { mapActions } from 'vuex';
-  import * as moment         from 'moment';
+  import * as moment    from 'moment';
   import AccountHeader  from './account_header.vue';
   import ActionBar      from './action_bar.vue';
 
@@ -46,18 +47,20 @@
       ...mapState([
         'accounts',
         'currentAccount',
+        'currentTransaction',
         'transactions'
       ])
     },
 
     methods: {
-      formatDate(date) {
-        debugger
-      },
-
       ...mapActions([
-        'setCurrentAccount'
-      ])
+        'setCurrentAccount',
+        'setCurrentTransaction'
+      ]),
+
+      selectTransaction() {
+        alert('buh');
+      }
     }
   }
 </script>
