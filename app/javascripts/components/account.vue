@@ -2,31 +2,7 @@
   <div class="accounts">
     <account-header></account-header>
     <action-bar></action-bar>
-    <table>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>Date</th>
-        <th>Payee</th>
-        <th>Category</th>
-        <th>Memo</th>
-        <th>Outflow</th>
-        <th>Inflow</th>
-        <th></th>
-      </tr>
-      <tr v-for  = "transaction in transactions"
-          @click = "selectTransaction">
-        <td></td>
-        <td></td>
-        <td>{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
-        <td>{{transaction.payee}}</td>
-        <td>{{transaction.category}}</td>
-        <td>{{transaction.memo}}</td>
-        <td>{{transaction.outflow}}</td>
-        <td>{{transaction.inflow}}</td>
-        <td></td>
-      </tr>
-    </table>
+    <transaction-grid></transaction-grid>
   </div>
 </template>
 
@@ -36,19 +12,18 @@
   import * as moment    from 'moment';
   import AccountHeader  from './account_header.vue';
   import ActionBar      from './action_bar.vue';
+  import TransactionGrid from './transaction_grid.vue';
 
   export default {
     components: {
       AccountHeader,
-      ActionBar
+      ActionBar,
+      TransactionGrid
     },
 
     computed: {
       ...mapState([
-        'accounts',
-        'currentAccount',
-        'currentTransaction',
-        'transactions'
+        'currentAccount'
       ])
     },
 
@@ -56,11 +31,8 @@
       ...mapActions([
         'setCurrentAccount',
         'setCurrentTransaction'
-      ]),
+      ])
 
-      selectTransaction() {
-        alert('buh');
-      }
     }
   }
 </script>
