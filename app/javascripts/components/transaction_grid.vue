@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="transaction-grid">
     <tr>
       <th></th>
       <th></th>
@@ -11,8 +11,10 @@
       <th>Inflow</th>
       <th></th>
     </tr>
-    <tr v-for  = "transaction in transactions"
-        @click = "selectTransaction">
+    <tr v-for           = "transaction in transactions"
+        :class          = "cssClass(transaction.id)"
+        :transaction_id = "transaction.id"
+        @click          = "onRowClick">
       <td></td>
       <td></td>
       <td>{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
@@ -27,7 +29,10 @@
 </template>
 
 <script>
-  import { mapState   } from 'vuex';
+  import { mapActions } from 'vuex';
+  import { mapState }   from 'vuex';
+  import Transaction    from '../models/transaction.js';
+  import * as _         from 'lodash';
 
   export default {
     computed: {
@@ -38,9 +43,31 @@
     },
 
     methods: {
-      selectTransaction() {
-        alert('buh');
+      ...mapActions([
+        'setCurrentTransaction'
+      ]),
+
+      cssClass(transactionId) {
+        return transactionId == this.currentTransaction.id ? 'selected' : '';
+      },
+
+      findTransactionById(transactionId) {
+        return _.find(this.transactions, (transaction) => {
+          return parseInt(transactionId) == transaction.id;
+        });
+      },
+
+      onRowClick(event) {
+        let transactionId = event.currentTarget.getAttribute('transaction_id');
+        let transaction   = this.findTransactionById(transactionId);
+        this.setCurrentTransaction(transaction);
       }
     }
   }
 </script>
+
+<style>
+  .transaction-grid .selected {
+    background-color: gray;
+  }
+</style>

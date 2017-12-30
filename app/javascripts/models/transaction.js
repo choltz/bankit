@@ -6,11 +6,12 @@ export default class Transaction {
       return;
     }
 
-    this.transaction_at = options.transaction_at;
-    this.payee          = options.payee;
+    this.id             = options.id;
     this.category       = options.category;
+    this.inflow         = options.inflow;
     this.memo           = options.memo;
     this.outflow        = options.outflow;
-    this.inflow         = options.inflow;
+    this.payee          = options.payee;
+    this.transaction_at = options.transaction_at;
   }
 };
