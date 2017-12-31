@@ -16,7 +16,7 @@ account_data.each do |count, type|
                             user_id:      1,
                             active:       true
 
-  (1..9).each do |n|
+  (1..39).each do |n|
     Transaction.create! account:        account,
                         transaction_at: DateTime.now,
                         payee:          "Payee #{account.id} #{n}",
