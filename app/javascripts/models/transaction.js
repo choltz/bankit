@@ -6,11 +6,13 @@ export default class Transaction {
       return;
     }
 
+    let processDecimal = (value) => { return _.isEmpty(value) ? 0.0 : parseFloat(value); };
+
     this.id             = options.id;
     this.category       = options.category;
-    this.inflow         = options.inflow;
+    this.inflow         = processDecimal(options.inflow);
     this.memo           = options.memo;
-    this.outflow        = options.outflow;
+    this.outflow        = processDecimal(options.outflow);
     this.payee          = options.payee;
     this.transaction_at = options.transaction_at;
   }
