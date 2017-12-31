@@ -38,17 +38,4 @@
 </script>
 
 <style>
-  .accounts table {
-    width: 100%;
-    border-spacing: 0px;
-  }
-
-  .accounts th,
-  .accounts td {
-    font-weight:   normal;
-    font-size:     .8em;
-    border-bottom: 1px solid #dee3e8;
-    border-left:   1px solid #dee3e8;
-    padding:       .5em;
-  }
 </style>

@@ -68,6 +68,21 @@
 
 <style>
   .transaction-grid .selected {
-    background-color: gray;
+    background-color: #00596f;
+    color: white;
+  }
+
+  .accounts table {
+    width: 100%;
+    border-spacing: 0px;
+  }
+
+  .transaction-grid th,
+  .transaction-grid td {
+    font-weight:   normal;
+    font-size:     .8em;
+    border-bottom: 1px solid #dee3e8;
+    border-left:   none;
+    padding:       .5em;
   }
 </style>
