@@ -71,14 +71,23 @@
 </script>
 
 <style>
+  .transaction-grid  {
+    position:   fixed;
+    right:      0px;
+    left:       260px;
+    top:        130px;
+    bottom:     0px;
+    overflow-y: scroll;
+  }
+
   .transaction-grid table {
-    width: 100%;
+    width:          100%;
     border-spacing: 0px;
   }
 
   .transaction-grid table .selected {
     background-color: #00596f;
-    color: white;
+    color:            white;
   }
 
   .transaction-grid table th,
@@ -88,7 +97,6 @@
     border-bottom: 1px solid #dee3e8;
     border-left:   none;
     padding:       .5em;
-
     cursor:        pointer;
   }
 
@@ -100,10 +108,4 @@
     width: 2em;
   }
 
-  .transaction-grid  {
-    height: 100%;
-
-    position: fixed;
-    overflow-y: scroll;
-  }
 </style>
