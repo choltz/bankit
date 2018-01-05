@@ -5,26 +5,32 @@
         <th class="small-column"></th>
         <th class="small-column"></th>
         <th class="text-left long-column">Date</th>
-        <th class="text-left">Payee</th>
-        <th class="text-left">Category</th>
-        <th class="text-left">Memo</th>
+        <th class="text-left medium-column">Payee</th>
+        <th class="text-left medium-column">Category</th>
+        <th class="text-left medium-column">Memo</th>
         <th class="text-right long-column">Outflow</th>
         <th class="text-right long-column">Inflow</th>
         <th></th>
       </tr>
-      <tr v-for           = "transaction in transactions"
-          :class          = "cssClass(transaction.id)" :transaction_id = "transaction.id" @click          = "onRowClick">
-        <td></td>
-        <td></td>
-        <td class="text-left">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
-        <td class="text-left">{{transaction.payee}}</td>
-        <td class="text-left">{{transaction.category}}</td>
-        <td class="text-left">{{transaction.memo}}</td>
-        <td class="text-right">{{formatMoney(transaction.outflow)}}</td>
-        <td class="text-right">{{formatMoney(transaction.inflow)}}</td>
-        <td></td>
-      </tr>
     </table>
+    <div class="transaction-grid-data">
+      <table>
+        <tr v-for           = "transaction in transactions"
+            :class          = "cssClass(transaction.id)"
+            :transaction_id = "transaction.id"
+            @click          = "onRowClick">
+          <td class="small-column"></td>
+          <td class="small-column"></td>
+          <td class="text-left long-column">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
+          <td class="text-left medium-column">{{transaction.payee}}</td>
+          <td class="text-left medium-column">{{transaction.category}}</td>
+          <td class="text-left medium-column">{{transaction.memo}}</td>
+          <td class="text-right long-column">{{formatMoney(transaction.outflow)}}</td>
+          <td class="text-right long-column">{{formatMoney(transaction.inflow)}}</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -71,11 +77,11 @@
 </script>
 
 <style>
-  .transaction-grid  {
+  .transaction-grid-data  {
     position:   fixed;
     right:      0px;
     left:       260px;
-    top:        130px;
+    top:        159px;
     bottom:     0px;
     overflow-y: scroll;
   }
@@ -95,13 +101,17 @@
     font-weight:   normal;
     font-size:     .8em;
     border-bottom: 1px solid #dee3e8;
-    border-left:   none;
+    border-left:   solid 1px gray;
     padding:       .5em;
     cursor:        pointer;
   }
 
   .transaction-grid table .long-column {
     width: 8em;
+  }
+
+  .transaction-grid table .medium-column {
+    width: 20%;
   }
 
   .transaction-grid table .small-column {
