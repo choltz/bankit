@@ -1,29 +1,31 @@
 <template>
-  <table class="transaction-grid">
-    <tr>
-      <th class="small-column"></th>
-      <th class="small-column"></th>
-      <th class="text-left long-column">Date</th>
-      <th class="text-left">Payee</th>
-      <th class="text-left">Category</th>
-      <th class="text-left">Memo</th>
-      <th class="text-right long-column">Outflow</th>
-      <th class="text-right long-column">Inflow</th>
-      <th></th>
-    </tr>
-    <tr v-for           = "transaction in transactions"
-        :class          = "cssClass(transaction.id)" :transaction_id = "transaction.id" @click          = "onRowClick">
-      <td></td>
-      <td></td>
-      <td class="text-left">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
-      <td class="text-left">{{transaction.payee}}</td>
-      <td class="text-left">{{transaction.category}}</td>
-      <td class="text-left">{{transaction.memo}}</td>
-      <td class="text-right">{{formatMoney(transaction.outflow)}}</td>
-      <td class="text-right">{{formatMoney(transaction.inflow)}}</td>
-      <td></td>
-    </tr>
-  </table>
+  <div class="transaction-grid">
+    <table>
+      <tr>
+        <th class="small-column"></th>
+        <th class="small-column"></th>
+        <th class="text-left long-column">Date</th>
+        <th class="text-left">Payee</th>
+        <th class="text-left">Category</th>
+        <th class="text-left">Memo</th>
+        <th class="text-right long-column">Outflow</th>
+        <th class="text-right long-column">Inflow</th>
+        <th></th>
+      </tr>
+      <tr v-for           = "transaction in transactions"
+          :class          = "cssClass(transaction.id)" :transaction_id = "transaction.id" @click          = "onRowClick">
+        <td></td>
+        <td></td>
+        <td class="text-left">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
+        <td class="text-left">{{transaction.payee}}</td>
+        <td class="text-left">{{transaction.category}}</td>
+        <td class="text-left">{{transaction.memo}}</td>
+        <td class="text-right">{{formatMoney(transaction.outflow)}}</td>
+        <td class="text-right">{{formatMoney(transaction.inflow)}}</td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -69,18 +71,18 @@
 </script>
 
 <style>
-  .transaction-grid .selected {
-    background-color: #00596f;
-    color: white;
-  }
-
-  .accounts table {
+  .transaction-grid table {
     width: 100%;
     border-spacing: 0px;
   }
 
-  .transaction-grid th,
-  .transaction-grid td {
+  .transaction-grid table .selected {
+    background-color: #00596f;
+    color: white;
+  }
+
+  .transaction-grid table th,
+  .transaction-grid table td {
     font-weight:   normal;
     font-size:     .8em;
     border-bottom: 1px solid #dee3e8;
@@ -90,11 +92,18 @@
     cursor:        pointer;
   }
 
-  .transaction-grid .long-column {
+  .transaction-grid table .long-column {
     width: 8em;
   }
 
-  .transaction-grid .small-column {
+  .transaction-grid table .small-column {
     width: 2em;
+  }
+
+  .transaction-grid  {
+    height: 100%;
+
+    position: fixed;
+    overflow-y: scroll;
   }
 </style>
