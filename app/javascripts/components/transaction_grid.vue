@@ -10,7 +10,7 @@
         <th class="text-left medium-column">Memo</th>
         <th class="text-right long-column">Outflow</th>
         <th class="text-right long-column">Inflow</th>
-        <th></th>
+        <th class="small-column"></th>
       </tr>
     </table>
     <div class="transaction-grid-data">
@@ -27,7 +27,7 @@
           <td class="text-left medium-column">{{transaction.memo}}</td>
           <td class="text-right long-column">{{formatMoney(transaction.outflow)}}</td>
           <td class="text-right long-column">{{formatMoney(transaction.inflow)}}</td>
-          <td></td>
+          <td class="small-column"></td>
         </tr>
       </table>
     </div>
@@ -115,7 +115,7 @@
   }
 
   .transaction-grid table .small-column {
-    width: 2em;
+    width: 1.5em;
   }
 
 </style>
