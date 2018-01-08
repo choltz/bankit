@@ -1,19 +1,21 @@
 <template>
   <div class="transaction-grid">
-    <table>
-      <tr>
-        <th class="small-column"></th>
-        <th class="small-column"></th>
-        <th class="text-left long-column">Date</th>
-        <th class="text-left medium-column">Payee</th>
-        <th class="text-left medium-column">Category</th>
-        <th class="text-left medium-column">Memo</th>
-        <th class="text-right long-column">Outflow</th>
-        <th class="text-right long-column">Inflow</th>
-        <th class="small-column"></th>
-      </tr>
-    </table>
-    <div class="transaction-grid-data">
+    <div class="transaction-grid table-header">
+      <table>
+        <tr>
+          <th class="small-column"></th>
+          <th class="small-column"></th>
+          <th class="text-left long-column">Date</th>
+          <th class="text-left medium-column">Payee</th>
+          <th class="text-left medium-column">Category</th>
+          <th class="text-left medium-column">Memo</th>
+          <th class="text-right long-column">Outflow</th>
+          <th class="text-right long-column">Inflow</th>
+          <th class="small-column"></th>
+        </tr>
+      </table>
+    </div>
+    <div class="transaction-grid table-body">
       <table>
         <tr v-for           = "transaction in transactions"
             :class          = "cssClass(transaction.id)"
@@ -72,25 +74,54 @@
         let transaction   = this.findTransactionById(transactionId);
         this.setCurrentTransaction(transaction);
       }
+    },
+
+    mounted: function() {
+      this.$nextTick(function() {
+        let height = window.innerHeight - this.$el.offsetTop - 2;
+
+        this.$el.style.height = height + 'px';
+      });
     }
   }
 </script>
 
 <style>
-  .transaction-grid-data  {
-    position:   fixed;
-    right:      0px;
-    left:       260px;
-    top:        159px;
-    bottom:     0px;
-    overflow-y: scroll;
+  .transaction-grid {
+    display: flex;
+    flex-direction: column;
   }
 
   .transaction-grid table {
-    width:          100%;
-    border-spacing: 0px;
+    width: 100%;
+    table-layout: fixed;
+    margin: 0;
   }
 
+  .transaction-grid  .table-header {
+    flex: 0 100% auto;
+    overflow-y: scroll;
+  }
+
+  .transaction-grid  .table-body {
+    height: 500px;
+    flex: 1;
+    overflow-y: scroll;
+  }
+
+  .transaction-grid .table-footer {
+    flex: 1 100% auto;
+  }
+
+  .transaction-grid table td {
+    overflow: hidden;
+  }
+
+  .transaction-grid table th {
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
   .transaction-grid table .selected {
     background-color: #00596f;
     color:            white;
@@ -101,7 +132,6 @@
     font-weight:   normal;
     font-size:     .8em;
     border-bottom: 1px solid #dee3e8;
-    border-left:   solid 1px gray;
     padding:       .5em;
     cursor:        pointer;
   }
@@ -117,5 +147,4 @@
   .transaction-grid table .small-column {
     width: 1.5em;
   }
-
 </style>
