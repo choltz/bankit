@@ -5,12 +5,12 @@
         <tr>
           <th class="small-column"></th>
           <th class="small-column"></th>
-          <th class="text-left long-column">Date</th>
-          <th class="text-left medium-column">Payee</th>
-          <th class="text-left medium-column">Category</th>
-          <th class="text-left medium-column">Memo</th>
-          <th class="text-right long-column">Outflow</th>
-          <th class="text-right long-column">Inflow</th>
+          <th class="text-left long-column"><div class="column-text">DATE</div></th>
+          <th class="text-left medium-column"><div class="column-text">PAYEE</div></th>
+          <th class="text-left medium-column"><div class="column-text">CATEGORY</div></th>
+          <th class="text-left medium-column"><div class="column-text">MEMO</div></th>
+          <th class="text-right long-column"><div class="column-text">OUTFLOW</div></th>
+          <th class="text-right long-column"><div class="column-text">INFLOW</div></th>
           <th class="small-column"></th>
         </tr>
       </table>
@@ -96,6 +96,7 @@
     width: 100%;
     table-layout: fixed;
     margin: 0;
+    border-spacing: 0px;
   }
 
   .transaction-grid  .table-header {
@@ -118,10 +119,16 @@
   }
 
   .transaction-grid table th {
+    color: #4c7079;
     overflow: hidden;
     position: relative;
     white-space: nowrap;
   }
+
+  .transaction-grid table th .column-text {
+    font-size: .9em ;
+  }
+
   .transaction-grid table .selected {
     background-color: #00596f;
     color:            white;
