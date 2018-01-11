@@ -52,17 +52,12 @@
 
     methods: {
       ...mapActions([
+        'findTransactionById',
         'setCurrentTransaction'
       ]),
 
       cssClass(transactionId) {
         return transactionId == this.currentTransaction.id ? 'selected' : '';
-      },
-
-      findTransactionById(transactionId) {
-        return _.find(this.transactions, (transaction) => {
-          return parseInt(transactionId) == transaction.id;
-        });
       },
 
       formatMoney(value) {
@@ -71,8 +66,11 @@
 
       onRowClick(event) {
         let transactionId = event.currentTarget.getAttribute('transaction_id');
-        let transaction   = this.findTransactionById(transactionId);
-        this.setCurrentTransaction(transaction);
+
+        this.findTransactionById(transactionId)
+            .then((transaction) => {
+              this.setCurrentTransaction(transaction);
+            })
       }
     },
 

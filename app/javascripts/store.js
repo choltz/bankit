@@ -35,11 +35,19 @@ function builder(accounts, currentAccount) {
     },
 
     actions: {
+      // Public: Return the transaction model that corresponds with the given
+      // transaction id
+      findTransactionById({commit, dispatch}, transactionId) {
+        return _.find(this.state.transactions, (transaction) => {
+          return parseInt(transactionId) == transaction.id;
+        });
+      },
+
       setCurrentAccount({commit, dispatch}, account) {
         axios.get('/api/transactions/' + account.id)
           .then((results) => {
             commit('setCurrentAccount', account);
-            commit('setTransactions',   _.map(results.data, (item) => {
+            commit('setTransactions', _.map(results.data, (item) => {
               return new Transaction(item);
             }));
           })
