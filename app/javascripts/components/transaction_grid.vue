@@ -70,15 +70,21 @@
         this.findTransactionById(transactionId)
             .then((transaction) => {
               this.setCurrentTransaction(transaction);
-            })
+            });
+      },
+
+      resizeGrid() {
+        let height = window.innerHeight - this.$el.offsetTop - 2;
+        this.$el.style.height = height + 'px';
       }
     },
 
     mounted: function() {
       this.$nextTick(function() {
-        let height = window.innerHeight - this.$el.offsetTop - 2;
-
-        this.$el.style.height = height + 'px';
+        // set the grid size and set an event to resize the grid when the
+        // window is resized
+        this.resizeGrid();
+        window.addEventListener('resize',this.resizeGrid);
       });
     }
   }
