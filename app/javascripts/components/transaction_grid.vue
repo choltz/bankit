@@ -104,12 +104,12 @@
     border-spacing: 0px;
   }
 
-  .transaction-grid  .table-header {
+  .transaction-grid .table-header {
     flex: 0 100% auto;
     overflow-y: scroll;
   }
 
-  .transaction-grid  .table-body {
+  .transaction-grid .table-body {
     height: 500px;
     flex: 1;
     overflow-y: scroll;
