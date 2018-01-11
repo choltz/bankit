@@ -7,7 +7,7 @@ import Account   from 'javascripts/components/account.vue';
 Vue.use(VueRouter);
 
 let routes = [
-  { path: '/',             component: Budget },
+  { path: '/',             redirect: '/budget' },
   { path: '/budget',       component: Budget },
   { path: '/reports',      component: Reports },
   { path: '/accounts',     component: Account },

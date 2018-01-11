@@ -8,6 +8,7 @@
   import AccountsActionbar from './actionbars/accounts_actionbar.vue';
   import BudgetActionbar   from './actionbars/budget_actionbar.vue';
   import ReportsActionbar  from './actionbars/reports_actionbar.vue';
+  import * as _            from 'lodash';
 
   export default {
     components: {
@@ -26,10 +27,11 @@
       //
       // Examples: 'accounts', 'budget', 'reports'
       type() {
-        return this.$route
-                   .path
-                   .replace(/\/[^$+]$/, '')
-                   .replace(/^\//, '');
+        let type = this.$route
+                       .path
+                       .replace(/\/[^$+]$/, '')
+                       .replace(/^\//, '');
+        return _.isEmpty(type) ? 'budget' : type;
       }
     }
   }
