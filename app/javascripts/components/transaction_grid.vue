@@ -17,20 +17,12 @@
     </div>
     <div class="transaction-grid table-body">
       <table>
-        <tr v-for           = "transaction in transactions"
+        <grid-row v-for     = "transaction in transactions"
             :class          = "cssClass(transaction.id)"
-            :transaction_id = "transaction.id"
-            @click          = "onRowClick">
-          <td class="small-column"></td>
-          <td class="small-column"></td>
-          <td class="text-left long-column">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
-          <td class="text-left medium-column">{{transaction.payee}}</td>
-          <td class="text-left medium-column">{{transaction.category}}</td>
-          <td class="text-left medium-column">{{transaction.memo}}</td>
-          <td class="text-right long-column">{{formatMoney(transaction.outflow)}}</td>
-          <td class="text-right long-column">{{formatMoney(transaction.inflow)}}</td>
-          <td class="small-column"></td>
-        </tr>
+            :transaction    = "transaction"
+            @click          = "selectTransaction"
+            @dblclick       = "editTransaction">
+        </grid-row>
       </table>
     </div>
   </div>
@@ -39,10 +31,14 @@
 <script>
   import { mapActions } from 'vuex';
   import { mapState }   from 'vuex';
+  import GridRow        from './transaction_grid_row.vue';
   import Transaction    from '../models/transaction.js';
-  import * as _         from 'lodash';
 
   export default {
+    components: {
+      GridRow
+    },
+
     computed: {
       ...mapState([
         'currentTransaction',
@@ -64,13 +60,18 @@
         return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
       },
 
-      onRowClick(event) {
+      selectTransaction(event) {
         let transactionId = event.currentTarget.getAttribute('transaction_id');
 
         this.findTransactionById(transactionId)
             .then((transaction) => {
               this.setCurrentTransaction(transaction);
             });
+      },
+
+      editTransaction() {
+        alert('buh')
+
       },
 
       resizeGrid() {

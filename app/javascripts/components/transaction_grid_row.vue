@@ -1,0 +1,52 @@
+<template>
+  <tr :class="transactionGridRowClass"
+      :transaction_id="transaction.id">
+    <td class="small-column"></td>
+    <td class="small-column"></td>
+    <td class="text-left long-column">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
+    <td class="text-left medium-column">{{transaction.payee}}</td>
+    <td class="text-left medium-column">{{transaction.category}}</td>
+    <td class="text-left medium-column">{{transaction.memo}}</td>
+    <td class="text-right long-column">{{formatMoney(transaction.outflow)}}</td>
+    <td class="text-right long-column">{{formatMoney(transaction.inflow)}}</td>
+    <td class="small-column"></td>
+  </tr>
+</template>
+
+<script>
+  import Transaction from '../models/transaction.js';
+
+  export default {
+    props: {
+      cssClass:    { default: '' },
+      transaction: { default: new Transaction() }
+    },
+
+    computed: {
+      transactionGridRowClass() {
+        return 'transaction-grid-row ' + this.cssClass;
+      }
+    },
+
+    methods: {
+      formatMoney(value) {
+        return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
+      }
+    }
+
+  }
+</script>
+
+<style>
+  .transaction-grid-row td .long-column {
+    width: 8em;
+  }
+
+  .transaction-grid-row td .medium-column {
+    width: 20%;
+  }
+
+  .transaction-grid-row td .small-column {
+    width: 1.5em;
+  }
+</style>
