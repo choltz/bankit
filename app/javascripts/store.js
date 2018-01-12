@@ -10,10 +10,11 @@ Vue.use(Vuex);
 function builder(accounts, currentAccount) {
   return new Vuex.Store({
     state: {
-      accounts:           accounts,
-      currentAccount:     currentAccount || new Account.allAccounts(),
-      currentTransaction: new Transaction(),
-      transactions:       []
+      accounts:            accounts,
+      currentAccount:      currentAccount || new Account.allAccounts(),
+      currentTransaction:  new Transaction(),
+      transactionEditMode: false,
+      transactions:        []
     },
 
     mutations: {
@@ -22,11 +23,15 @@ function builder(accounts, currentAccount) {
       },
 
       setCurrentAccount(state, payload) {
-
+        state.currentAccount = payload;
       },
 
       setCurrentTransaction(state, payload) {
         state.currentTransaction = payload;
+      },
+
+      setTransactionEditMode(state, payload) {
+        state.transactionEditMode = payload;
       },
 
       setTransactions(state, payload) {
@@ -58,6 +63,10 @@ function builder(accounts, currentAccount) {
 
       setCurrentTransaction({commit, dispatch}, transaction) {
         commit('setCurrentTransaction', transaction);
+      },
+
+      setTransactionEditMode({commit, dispatch}, mode) {
+        commit('setTransactionEditMode', mode);
       }
     }
   });

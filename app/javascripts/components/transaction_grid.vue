@@ -17,12 +17,13 @@
     </div>
     <div class="transaction-grid table-body">
       <table>
-        <grid-row v-for     = "transaction in transactions"
-            :class          = "cssClass(transaction.id)"
-            :transaction    = "transaction"
-            @click          = "selectTransaction"
-            @dblclick       = "editTransaction">
-        </grid-row>
+        <component :is          = "rowComponent(transaction)"
+                   v-for        = "transaction in transactions"
+                   :class       = "cssClass(transaction.id)"
+                   :transaction = "transaction"
+                   @select      = "selectTransaction"
+                   @edit        = "editTransaction">
+        </component>
       </table>
     </div>
   </div>
@@ -31,17 +32,20 @@
 <script>
   import { mapActions } from 'vuex';
   import { mapState }   from 'vuex';
+  import EditRow        from './transaction_edit_row.vue';
   import GridRow        from './transaction_grid_row.vue';
   import Transaction    from '../models/transaction.js';
 
   export default {
     components: {
+      EditRow,
       GridRow
     },
 
     computed: {
       ...mapState([
         'currentTransaction',
+        'transactionEditMode',
         'transactions'
       ])
     },
@@ -49,7 +53,8 @@
     methods: {
       ...mapActions([
         'findTransactionById',
-        'setCurrentTransaction'
+        'setCurrentTransaction',
+        'setTransactionEditMode'
       ]),
 
       cssClass(transactionId) {
@@ -60,18 +65,18 @@
         return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
       },
 
-      selectTransaction(event) {
-        let transactionId = event.currentTarget.getAttribute('transaction_id');
-
-        this.findTransactionById(transactionId)
-            .then((transaction) => {
-              this.setCurrentTransaction(transaction);
-            });
+      rowComponent(transaction) {
+        return this.transactionEditMode && this.currentTransaction == transaction ? 'EditRow' : 'GridRow';
       },
 
-      editTransaction() {
-        alert('buh')
+      selectTransaction(transaction) {
+        if (!this.transactionEditMode) {
+          this.setCurrentTransaction(transaction);
+        }
+      },
 
+      editTransaction(transaction) {
+        this.setTransactionEditMode(true);
       },
 
       resizeGrid() {

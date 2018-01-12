@@ -1,11 +1,9 @@
 <template>
   <tr :class="transactionGridRowClass"
-      :transaction_id="transaction.id"
-      @click         ="onClick"
-      @dblclick      ="onDblClick">
+      :transaction_id="transaction.id">
     <td class="small-column"></td>
     <td class="small-column"></td>
-    <td class="text-left long-column">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
+    <td class="text-left long-column">EDIT {{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
     <td class="text-left medium-column">{{transaction.payee}}</td>
     <td class="text-left medium-column">{{transaction.category}}</td>
     <td class="text-left medium-column">{{transaction.memo}}</td>
@@ -33,14 +31,6 @@
     methods: {
       formatMoney(value) {
         return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
-      },
-
-      onClick(event) {
-        this.$emit('select', this.transaction);
-      },
-
-      onDblClick(event) {
-        this.$emit('edit', this.transaction);
       }
     }
   }
