@@ -40,7 +40,8 @@
     methods: {
       ...mapActions([
         'getAccounts',
-        'setCurrentAccount'
+        'setCurrentAccount',
+        'setTransactionEditMode'
       ]),
 
       // If this current path is an account path, then set the current account
@@ -55,6 +56,7 @@
       // Update the current account when the route changes
       '$route' (to, from) {
         this.setCurrentAccountIfAccountPath();
+        this.setTransactionEditMode(false);
       }
     },
 

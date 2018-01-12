@@ -40,6 +40,7 @@
       ...mapActions([
         'setTransactionEditMode'
       ]),
+
       cancel() {
         this.setTransactionEditMode(false);
       },
