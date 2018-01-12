@@ -8,13 +8,21 @@
     <td class="text-left medium-column">{{transaction.category}}</td>
     <td class="text-left medium-column">{{transaction.memo}}</td>
     <td class="text-right long-column">{{formatMoney(transaction.outflow)}}</td>
-    <td class="text-right long-column">{{formatMoney(transaction.inflow)}}</td>
+    <td class="text-right long-column">
+      <div>
+        {{formatMoney(transaction.inflow)}}
+      </div>
+      <div @click="cancel">
+        Cancel
+      </div>
+    </td>
     <td class="small-column"></td>
   </tr>
 </template>
 
 <script>
-  import Transaction from '../models/transaction.js';
+  import { mapActions } from 'vuex';
+  import Transaction    from '../models/transaction.js';
 
   export default {
     props: {
@@ -29,6 +37,13 @@
     },
 
     methods: {
+      ...mapActions([
+        'setTransactionEditMode'
+      ]),
+      cancel() {
+        this.setTransactionEditMode(false);
+      },
+
       formatMoney(value) {
         return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
       }
