@@ -1,15 +1,21 @@
 <template>
-  <input type   = "text"
-         :class = "cssClass"
-         :value = "value">
+  <input type    = "text"
+         :class  = "cssClass"
+         v-model = "value">
   </input>
 </template>
 
 <script>
   export default {
     props: {
-      value:    { default: null },
-      cssClass: { default: '' }
+      initialValue: { default: null },
+      cssClass:     { default: '' }
+    },
+
+    data: function() {
+      return {
+        value: this.initialValue
+      };
     }
   };
 </script>

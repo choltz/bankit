@@ -4,25 +4,29 @@
     <td class="small-column"></td>
     <td class="small-column"></td>
     <td class="text-left long-column">
-      <textbox :value="formatDate(transaction.transaction_at)"></textbox>
+      <textbox ref="transactionAt" :initial-value="formatDate(transaction.transaction_at)"></textbox>
     </td>
     <td class="text-left medium-column">
-      <textbox :value="transaction.payee"></textbox>
+      <textbox ref="payee" :initial-value="transaction.payee"></textbox>
     </td>
     <td class="text-left medium-column">
-      <textbox :value="transaction.category"></textbox>
+      <textbox ref="category" :initial-value="transaction.category"></textbox>
     </td>
     <td class="text-left medium-column">
-      <textbox :value="transaction.memo"></textbox>
+      <textbox ref="memo" :initial-value="transaction.memo"></textbox>
     </td>
     <td class="text-right long-column">
-      <textbox css-class = "text-right width-100-p"
-               :value    = "formatMoney(transaction.outflow)"></textbox>
+      <textbox ref            = "outflow"
+               css-class      = "text-right width-100-p"
+               :initial-value = "formatMoney(transaction.outflow)">
+      </textbox>
     </td>
     <td class="text-right long-column">
       <div>
-        <textbox css-class = "text-right width-100-p"
-                 :value    = "formatMoney(transaction.inflow)"></textbox>
+        <textbox ref            = "inflow"
+                 css-class      = "text-right width-100-p"
+                 :initial-value = "formatMoney(transaction.inflow)">
+        </textbox>
       </div>
       <div class="flex flex-right">
         <div @click="save" class="block-padding-5">
@@ -77,8 +81,11 @@
       },
 
       save() {
-        alert('saved')
+        debugger
       }
+    },
+
+    mounted: function() {
     }
   }
 </script>
