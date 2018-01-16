@@ -5,7 +5,7 @@
       @dblclick      ="onDblClick">
     <td class="small-column"></td>
     <td class="small-column"></td>
-    <td class="text-left long-column">{{transaction.transaction_at | moment("YYYY/MM/DD")}}</td>
+    <td class="text-left long-column">{{transaction.transaction_at | moment("MM/DD/YYYY")}}</td>
     <td class="text-left medium-column">{{transaction.payee}}</td>
     <td class="text-left medium-column">{{transaction.category}}</td>
     <td class="text-left medium-column">{{transaction.memo}}</td>

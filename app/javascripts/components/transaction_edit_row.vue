@@ -16,14 +16,21 @@
       <textbox :value="transaction.memo"></textbox>
     </td>
     <td class="text-right long-column">
-      <textbox :value="formatMoney(transaction.outflow)"></textbox>
+      <textbox css-class = "text-right width-100-p"
+               :value    = "formatMoney(transaction.outflow)"></textbox>
     </td>
     <td class="text-right long-column">
       <div>
-        <textbox :value="formatMoney(transaction.inflow)"></textbox>
+        <textbox css-class = "text-right width-100-p"
+                 :value    = "formatMoney(transaction.inflow)"></textbox>
       </div>
-      <div @click="cancel">
-        Cancel
+      <div class="flex flex-right">
+        <div @click="save" class="block-padding-5">
+          Save
+        </div>
+        <div @click="cancel" class="block-padding-5">
+          Cancel
+        </div>
       </div>
     </td>
     <td class="small-column"></td>
@@ -62,11 +69,15 @@
       },
 
       formatDate(date) {
-        return moment(date).format("YYYY/MM/DD");
+        return moment(date).format("MM/DD/YYYY");
       },
 
       formatMoney(value) {
         return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
+      },
+
+      save() {
+        alert('saved')
       }
     }
   }
