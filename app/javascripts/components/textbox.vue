@@ -1,7 +1,8 @@
 <template>
   <input type    = "text"
          :class  = "cssClass"
-         v-model = "value">
+         v-model = "value"
+         @blur   = "update">
   </input>
 </template>
 
@@ -9,13 +10,20 @@
   export default {
     props: {
       initialValue: { default: null },
-      cssClass:     { default: '' }
+      cssClass:     { default: '' },
+      field:        { default: null }
     },
 
     data: function() {
       return {
         value: this.initialValue
       };
+    },
+
+    methods: {
+      update() {
+        this.$emit('blur', this.field, this.value);
+      }
     }
   };
 </script>

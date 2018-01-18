@@ -4,28 +4,38 @@
     <td class="small-column"></td>
     <td class="small-column"></td>
     <td class="text-left long-column">
-      <textbox ref="transactionAt" :initial-value="formatDate(transaction.transaction_at)"></textbox>
+      <textbox field          = "transactionAt"
+               :initial-value = "formatDate(transaction.transaction_at)"
+               @blur          = "updateField"></textbox>
     </td>
     <td class="text-left medium-column">
-      <textbox ref="payee" :initial-value="transaction.payee"></textbox>
+      <textbox field          = "payee"
+               :initial-value = "transaction.payee"
+               @blur          = "updateField"></textbox>
     </td>
     <td class="text-left medium-column">
-      <textbox ref="category" :initial-value="transaction.category"></textbox>
+      <textbox field          = "category"
+               :initial-value = "transaction.category"
+               @blur          = "updateField"></textbox>
     </td>
     <td class="text-left medium-column">
-      <textbox ref="memo" :initial-value="transaction.memo"></textbox>
+      <textbox field          = "memo"
+               :initial-value = "transaction.memo"
+               @blur          = "updateField"></textbox>
     </td>
     <td class="text-right long-column">
-      <textbox ref            = "outflow"
+      <textbox field          = "outflow"
                css-class      = "text-right width-100-p"
-               :initial-value = "formatMoney(transaction.outflow)">
+               :initial-value = "formatMoney(transaction.outflow)"
+               @blur          = "updateField">
       </textbox>
     </td>
     <td class="text-right long-column">
       <div>
-        <textbox ref            = "inflow"
+        <textbox field          = "inflow"
                  css-class      = "text-right width-100-p"
-                 :initial-value = "formatMoney(transaction.inflow)">
+                 :initial-value = "formatMoney(transaction.inflow)"
+                 @blur          = "updateField">
         </textbox>
       </div>
       <div class="flex flex-right">
@@ -81,7 +91,11 @@
       },
 
       save() {
-        debugger
+        console.log(this.transaction)
+      },
+
+      updateField(field, value) {
+        this.transaction[field] = value;
       }
     },
 
