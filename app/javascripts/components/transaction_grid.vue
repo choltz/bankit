@@ -62,7 +62,12 @@
       },
 
       formatMoney(value) {
-        return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
+        if (typeof(value) == 'string') {
+          return parseInt(value.replace(/^\$/, ''));
+        }
+        else {
+          return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
+        }
       },
 
       rowComponent(transaction) {
