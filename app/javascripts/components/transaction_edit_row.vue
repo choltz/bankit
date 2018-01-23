@@ -57,6 +57,7 @@
   import Transaction    from '../models/transaction.js';
   import Textbox        from './textbox.vue';
   import Currencybox    from './currencybox.vue';
+  import {toMoney}      from '../lib/float.js';
 
   export default {
     components: {
@@ -86,15 +87,6 @@
 
       formatDate(date) {
         return moment(date).format("MM/DD/YYYY");
-      },
-
-      formatMoney(value) {
-        if (typeof(value) == 'string') {
-          return parseInt(value.replace(/^\$/, ''));
-        }
-        else {
-          return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
-        }
       },
 
       save() {

@@ -9,14 +9,15 @@
     <td class="text-left medium-column">{{transaction.payee}}</td>
     <td class="text-left medium-column">{{transaction.category}}</td>
     <td class="text-left medium-column">{{transaction.memo}}</td>
-    <td class="text-right long-column">{{formatMoney(transaction.outflow)}}</td>
-    <td class="text-right long-column">{{formatMoney(transaction.inflow)}}</td>
+    <td class="text-right long-column">{{toMoney(transaction.outflow)}}</td>
+    <td class="text-right long-column">{{toMoney(transaction.inflow)}}</td>
     <td class="small-column"></td>
   </tr>
 </template>
 
 <script>
   import Transaction from '../models/transaction.js';
+  import {toMoney}   from '../lib/float.js';
 
   export default {
     props: {
@@ -31,14 +32,7 @@
     },
 
     methods: {
-      formatMoney(value) {
-        if (typeof(value) == 'string') {
-          return parseInt(value.replace(/^\$/, ''));
-        }
-        else {
-          return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
-        }
-      },
+      toMoney: toMoney,
 
       onClick(event) {
         this.$emit('select', this.transaction);

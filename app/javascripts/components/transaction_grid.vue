@@ -61,15 +61,6 @@
         return transactionId == this.currentTransaction.id ? 'selected' : '';
       },
 
-      formatMoney(value) {
-        if (typeof(value) == 'string') {
-          return parseInt(value.replace(/^\$/, ''));
-        }
-        else {
-          return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
-        }
-      },
-
       rowComponent(transaction) {
         return this.transactionEditMode && this.currentTransaction == transaction ? 'EditRow' : 'GridRow';
       },

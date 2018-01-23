@@ -7,8 +7,9 @@
 </template>
 
 <script>
-  import * as _ from 'lodash';
-  import moment from 'moment';
+  import * as _    from 'lodash';
+  import moment    from 'moment';
+  import {toMoney} from '../lib/float.js';
 
   export default {
     props: {
@@ -25,25 +26,11 @@
 
     computed: {
       displayValue() {
-        if (_.isNumber(this.value)) {
-          return this.formatMoney(this.value);
-        }
-        else {
-          return '';
-        }
+        return _.isNumber(this.value) ? toMoney(this.value) : '';
       }
     },
 
     methods: {
-      formatMoney(value) {
-        if (typeof(value) == 'string') {
-          return parseInt(value.replace(/^\$/, ''));
-        }
-        else {
-          return parseInt(value) == 0 ? '' : '$' + value.toFixed(2).toString();
-        }
-      },
-
       update() {
         if (!_.isEmpty(this.$el.value)) {
           this.value = parseFloat(this.$el.value.replace(/^\$/, ''));
