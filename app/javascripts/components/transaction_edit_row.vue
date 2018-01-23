@@ -24,19 +24,19 @@
                @blur          = "updateField"></textbox>
     </td>
     <td class="text-right long-column">
-      <textbox field          = "outflow"
-               css-class      = "text-right width-100-p"
-               :initial-value = "formatMoney(transaction.outflow)"
-               @blur          = "updateField">
-      </textbox>
+      <currencybox field          = "outflow"
+                   css-class      = "text-right width-100-p"
+                   :initial-value = "transaction.outflow"
+                   @blur          = "updateField">
+      </currencybox>
     </td>
     <td class="text-right long-column">
       <div>
-        <textbox field          = "inflow"
-                 css-class      = "text-right width-100-p"
-                 :initial-value = "formatMoney(transaction.inflow)"
-                 @blur          = "updateField">
-        </textbox>
+        <currencybox field          = "inflow"
+                     css-class      = "text-right width-100-p"
+                     :initial-value = "transaction.inflow"
+                     @blur          = "updateField">
+        </currencybox>
       </div>
       <div class="flex flex-right">
         <div @click="save" class="block-padding-5">
@@ -56,9 +56,11 @@
   import { mapActions } from 'vuex';
   import Transaction    from '../models/transaction.js';
   import Textbox        from './textbox.vue';
+  import Currencybox    from './currencybox.vue';
 
   export default {
     components: {
+      Currencybox,
       Textbox
     },
 
