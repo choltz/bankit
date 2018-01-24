@@ -1,0 +1,35 @@
+class Category < ActiveRecord::Base
+  DEFAULT = [
+    'Uncategorized',
+    'Gifts - Incoming',
+    'Buffer',
+    'Car load',
+    'Phone',
+    'Preschool',
+    'Waste Disposal',
+    'Mortgage',
+    'Electric',
+    'Water',
+    'Internet',
+    'Groceries',
+    'Subscriptions',
+    'Pet supplies and food',
+    'Auto Maintenance',
+    'Home Maintenance',
+    'Medical',
+    'Clothing',
+    'Gifts - Outgoing',
+    'Giving',
+    'Computer related',
+    'Stuff I forgot to budget for',
+    'Fitness',
+    'Vacation',
+    'Education',
+    'Books',
+    'Dining out',
+    'Gaming',
+    'Music',
+    'Fun money'
+  ]
+
+end
