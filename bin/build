@@ -1,0 +1,14 @@
+# /bin/sh
+timestamp=$(date +%Y%m%d-%H%M%S-%2N)
+
+cp bin/Dockerfile bin/Dockerfile-bak
+
+# update docker file to break cache at point were the code is pulled
+sed -i -e "s/RUN echo 'deploy <<>>'/RUN echo 'deploy <<$timestamp>>'/" $1/Dockerfile
+
+# build it the image
+docker build -t choltz/bankit bankit
+
+# restore the original dockerfile
+rm $1/Dockerfile
+mv $1/Dockerfile-bak $1/Dockerfile
