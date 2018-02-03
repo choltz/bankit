@@ -3,7 +3,7 @@ MAINTAINER choltz
 
 # Setup base dependencies
 RUN apt-get -y update && \
-    apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit
+    apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit wget
 
 RUN cd /tmp
 RUN wget https://cache.ruby-lang.org/pub/ruby/ruby-2.5.0.zip
@@ -102,7 +102,7 @@ RUN wget https://cache.ruby-lang.org/pub/ruby/ruby-2.5.0.zip
 # ADD config/rails/amazon_s3.yml    /home/web/apps/mobile-api/config/amazon_s3.yml
 
 # used to bust the cache and get the latest copy from master
-RUN echo 'deploy <<>>'
+RUN echo 'deploy <<20180201-224726-36>>'
 
 # USER web
 # RUN cd /home/web/apps/mobile-api && \
