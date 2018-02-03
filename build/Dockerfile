@@ -1,37 +1,34 @@
 FROM ubuntu:16.04
 MAINTAINER choltz
 
+RUN apt-get -y update &&\
+    apt-get -y install software-properties-common python3-software-properties
+RUN add-apt-repository universe
+
 # Setup base dependencies
-RUN apt-get -y update && \
-    apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit wget
+RUN apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit postgresql-client catdoc poppler-utils sudo wget unzip vim
+RUN apt-get install -y bash curl patch bzip2 gawk libssl-dev make libc6-dev patch openssl curl zlib1g zlib1g-dev libyaml-dev libsqlite3-dev sqlite3 libgmp-dev libgdbm-dev libncurses5-dev bison pkg-config libffi-dev libgmp-dev libreadline6-dev
+RUN apt-get install -y libxslt-dev libxml2-dev libpq-dev
+RUN apt-get upgrade -y
 
-RUN cd /tmp
-RUN wget https://cache.ruby-lang.org/pub/ruby/ruby-2.5.0.zip
+RUN cd /tmp && \
+    wget https://cache.ruby-lang.org/pub/ruby/ruby-2.5.0.zip && \
+    unzip ruby-2.5.0.zip && \
+    cd ruby-2.5.0 && \
+    ./configure && \
+    make && \
+    make install
 
-# Install RVM
-# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
-# RUN useradd web -m -s /bin/bash
-# USER web
-# RUN cd && \
-#     gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys D39DC0E3 && \
-#     curl -sSL https://get.rvm.io | bash -s stable
-# USER root
-# RUN /home/web/.rvm/bin/rvm requirements
-# USER web
-# RUN /bin/bash -l -c "rvm install ruby-2.3.1"
+# Make a dedicated user for which to run the app
+RUN useradd web -m -s /bin/bash
+USER web
 
-# # set env to produciton
-# RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
+# set env to produciton
+RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
 
-# # Install app dependencies
-# USER root
-# RUN apt-get update
-# RUN apt-get install -y nginx python2.7 nodejs libxslt-dev libxml2-dev libpq-dev
-# USER web
-
-# # Set up folders
-# RUN mkdir /home/web/bin
-# RUN mkdir /home/web/apps
+# Set up folders
+RUN mkdir /home/web/bin
+RUN mkdir /home/web/apps
 
 # ADD config/git/.git-credentials /home/web/.git-credentials
 # User root
