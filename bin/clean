@@ -1,2 +1,5 @@
 # /bin/sh
-docker image prune
+# docker image prune
+
+docker ps -a | cut -c-12 | xargs docker rm
+docker rmi -f $(docker images | grep "^<none>" | awk '{print $3}')

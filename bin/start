@@ -1,2 +1,4 @@
 # /bin/sh
-docker run -d -t --restart=always --name bankit -p 80:3000 -v $(pwd)/build/log:$(pwd)/home/web/apps/bankit/log choltz/bankit
+# docker run -d -t --restart=always --name bankit -p 80:3000 -v $(pwd)/build/log:$(pwd)/home/web/apps/bankit/log choltz/bankit
+
+docker run -d -t --restart=always --name bankit -p 80:3000 -v $(pwd):/home/web/app choltz/bankit
