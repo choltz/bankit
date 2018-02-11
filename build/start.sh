@@ -1,6 +1,9 @@
 # /bin/sh
 service postgresql start
 
+# configure postgresql
+/bin/su - postgres -c "psql -c \"CREATE USER web;\""
+
 # Configure the rails app
 /bin/su - web -c "echo $PATH &&\
                   cd /home/web/app &&\
