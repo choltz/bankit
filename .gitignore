@@ -25,3 +25,4 @@ Dockerfile-bak
 .byebug_history
 public/*
 yarn-error.log
+build/*.yml
