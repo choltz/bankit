@@ -22,7 +22,7 @@ RUN add-apt-repository universe
 RUN apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit postgresql-client catdoc poppler-utils sudo wget unzip vim
 RUN apt-get install -y bash curl patch bzip2 gawk libssl-dev make libc6-dev patch openssl curl zlib1g zlib1g-dev libyaml-dev libsqlite3-dev sqlite3 libgmp-dev libgdbm-dev libncurses5-dev bison pkg-config libffi-dev libgmp-dev libreadline6-dev
 RUN apt-get install -y libxslt-dev libxml2-dev libpq-dev
-RUN apt-get install -y postgresql
+RUN apt-get install -y postgresql nodejs npm
 RUN apt-get upgrade -y
 
 # Make a dedicated user for which to run the app
@@ -45,6 +45,7 @@ RUN cd /tmp && \
 # RUN ln -s /home/web/apps/ruby/bin/* /home/web/bin
 RUN echo "export PATH=\"$PATH:$HOME/bin\"" >> /home/web/.bashrc
 RUN echo "export PATH=\"$PATH:$HOME/apps/ruby/bin\"" >> /home/web/.bashrc
+RUN echo "export PATH=\"$PATH:$HOME/app/node_modules/.bin\"" >> /home/web/.bashrc
 
 # set env to produciton
 RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
