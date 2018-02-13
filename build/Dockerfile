@@ -25,6 +25,13 @@ RUN apt-get install -y libxslt-dev libxml2-dev libpq-dev
 RUN apt-get install -y postgresql nodejs npm
 RUN apt-get upgrade -y
 
+RUN service postgresql start &&\
+    /bin/su - postgres -c "psql -c \"CREATE USER web;\" &&\
+                           psql -c \"create database bankit_prod\""
+
+    # psql -c "CREATE USER web;" &&\
+    # psql -c "create database bankit_prod"
+
 # Make a dedicated user for which to run the app
 RUN useradd web -m -s /bin/bash
 USER web
@@ -49,6 +56,12 @@ RUN echo "export PATH=\"$PATH:$HOME/app/node_modules/.bin\"" >> /home/web/.bashr
 
 # set env to production
 RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
+
+RUN cd /home/web && \
+    git clone https://github.com/choltz/bankit.git && \
+    cd bankit && \
+    /home/web/apps/ruby/bin/gem install bundler && \
+    /home/web/apps/ruby/bin/bundle install
 
 
 # ADD config/git/.git-credentials /home/web/.git-credentials
@@ -120,17 +133,15 @@ RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
 # ADD config/rails/amazon_s3.yml    /home/web/apps/mobile-api/config/amazon_s3.yml
 
 # used to bust the cache and get the latest copy from master
-RUN echo 'deploy <<20180201-224726-36>>'
+RUN echo 'deploy <<>>'
 
-# USER web
-# RUN cd /home/web/apps/mobile-api && \
-#     git checkout master && \
-#     git pull && \
-#     git submodule init && \
-#     git submodule update
+USER web
+RUN cd /home/web/bankit && \
+    git checkout master && \
+    git pull
 
-# RUN /bin/bash -l -c "cd /home/web/apps/mobile-api && \
-#                      bundle install --without test development"
+# RUN /bin/bash -l -c "cd /home/web/bankit && \
+#                      /home/web/apps/ruby/bin/bundle install --without test development"
 
 # EXPOSE 80
 
@@ -139,8 +150,8 @@ USER root
 
 ADD start.sh /tmp
 RUN chmod +x /tmp/start.sh
-# CMD /tmp/start.sh; touch /tmp/buh; tail -f /tmp/buh
-CMD touch /tmp/buh; tail -f /tmp/buh
+CMD /tmp/start.sh; touch /tmp/buh; tail -f /tmp/buh
+# CMD touch /tmp/buh; tail -f /tmp/buh
 
 # CMD /home/web/bin/start.sh; tail -f /var/log/nginx/access.log
 # CMD touch /tmp/buh; tail -f /tmp/buh
