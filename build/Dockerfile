@@ -47,7 +47,7 @@ RUN echo "export PATH=\"$PATH:$HOME/bin\"" >> /home/web/.bashrc
 RUN echo "export PATH=\"$PATH:$HOME/apps/ruby/bin\"" >> /home/web/.bashrc
 RUN echo "export PATH=\"$PATH:$HOME/app/node_modules/.bin\"" >> /home/web/.bashrc
 
-# set env to produciton
+# set env to production
 RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
 
 
@@ -139,7 +139,8 @@ USER root
 
 ADD start.sh /tmp
 RUN chmod +x /tmp/start.sh
-CMD /tmp/start.sh; touch /tmp/buh; tail -f /tmp/buh
+# CMD /tmp/start.sh; touch /tmp/buh; tail -f /tmp/buh
+CMD touch /tmp/buh; tail -f /tmp/buh
 
 # CMD /home/web/bin/start.sh; tail -f /var/log/nginx/access.log
 # CMD touch /tmp/buh; tail -f /tmp/buh
