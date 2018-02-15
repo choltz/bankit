@@ -29,10 +29,6 @@ RUN service postgresql start &&\
     /bin/su - postgres -c "psql -c \"CREATE USER web;\" &&\
                            psql -c \"create database bankit_prod\""
 
-    # psql -c "CREATE USER web;" &&\
-    # psql -c "create database bankit_prod"
-
-# Make a dedicated user for which to run the app
 RUN useradd web -m -s /bin/bash
 USER web
 
@@ -50,9 +46,7 @@ RUN cd /tmp && \
     make install
 
 # RUN ln -s /home/web/apps/ruby/bin/* /home/web/bin
-RUN echo "export PATH=\"$PATH:$HOME/bin\"" >> /home/web/.bashrc
-RUN echo "export PATH=\"$PATH:$HOME/apps/ruby/bin\"" >> /home/web/.bashrc
-RUN echo "export PATH=\"$PATH:$HOME/app/node_modules/.bin\"" >> /home/web/.bashrc
+RUN echo "export PATH=\"$PATH:$HOME/bin:$HOME/apps/ruby/bin:$HOME/app/node_modules/.bin\"" >> /home/web/.bashrc
 
 # set env to production
 RUN echo "export RAILS_ENV=production" >> /home/web/.bashrc
@@ -63,74 +57,7 @@ RUN cd /home/web && \
     /home/web/apps/ruby/bin/gem install bundler && \
     /home/web/apps/ruby/bin/bundle install
 
-
-# ADD config/git/.git-credentials /home/web/.git-credentials
-# User root
-# RUN chown -R web:web /home/web/.git-credentials
-
-# # Clone the repository
-# User web
-# RUN git config --global credential.helper store
-
-# # Configure nginx
-# User root
-# ADD config/nginx/nginx.conf /etc/nginx/nginx.conf
-# ADD config/nginx/mobile-api.conf /etc/nginx/sites-available/mobile-api.conf
-# RUN ln -s /etc/nginx/sites-available/mobile-api.conf /etc/nginx/sites-enabled
-# RUN rm /etc/nginx/sites-enabled/default
-
-# # Fix the Log rotate config file to use the correct user. This accommodates the following
-# # unfixed ubuntu ticket
-# #
-# # https://bugs.launchpad.net/ubuntu/+source/logrotate/+bug/1644996
-# # RUN sed -i 's/^su root syslog/su root adm/' /etc/logrotate.conf
-
-# # add root unicorn files
-# RUN mkdir /etc/unicorn
-# ADD config/unicorn/unicorn /etc/init.d/unicorn
-# ADD config/unicorn/mobile-api.conf /etc/unicorn/mobile-api.conf
-
-# # Add the monit script
-# ADD monitrc /etc/monit/monitrc
-# RUN chmod 700 /etc/monit/monitrc
-
-# # Configure the log rotate script
-# ADD config/logrotate/rails /etc/logrotate.d/rails
-# RUN chmod 400 /etc/logrotate.d/rails
-
-# # Add the start up script
-# ADD start.sh /home/web/bin/start.sh
-
-# # Initial pull and gem fetch for the app. Since each step in this dockerfile
-# # is cached, this ensures that the source and gems are already present
-# # from the previous build.
-# #
-# # When the echo statement below is updated, it breaks the cache from that point
-# # forward and re-runs the gem fetch and pull against the app that is already
-# # cached in this step
-# RUN echo 'latest source snapshot - 2015-09-02'
-
-# USER web
-# RUN cd /home/web/apps && \
-#     git clone --progress --verbose https://gitlab.com/i4cp/mobile-api.git && \
-#     cd mobile-api && \
-#     git checkout master && \
-#     git submodule init && \
-#     git submodule update
-
-# RUN ln -s /home/web/apps/mobile-api /home/web/apps/mobile-api/current
-# RUN ln -s /home/web/apps/mobile-api /home/web/current
-# RUN mkdir -p /home/web/apps/mobile-api/tmp/pids
-# RUN mkdir -p /home/web/apps/mobile-api/tmp/sockets
-
-# RUN /bin/bash -l -c "cd /home/web/apps/mobile-api && \
-#                      gem install bundler && \
-#                      bundle install --without test development"
-
-# # add rails config files
-# ADD config/rails/database.yml     /home/web/apps/mobile-api/config/database.yml
-# ADD config/rails/secrets.yml      /home/web/apps/mobile-api/config/secrets.yml
-# ADD config/rails/amazon_s3.yml    /home/web/apps/mobile-api/config/amazon_s3.yml
+ADD database.yml /home/web/bankit/config/database.yml
 
 # used to bust the cache and get the latest copy from master
 RUN echo 'deploy <<>>'
@@ -140,18 +67,10 @@ RUN cd /home/web/bankit && \
     git checkout master && \
     git pull
 
-# RUN /bin/bash -l -c "cd /home/web/bankit && \
-#                      /home/web/apps/ruby/bin/bundle install --without test development"
-
-# EXPOSE 80
-
+EXPOSE 80
 
 USER root
 
 ADD start.sh /tmp
 RUN chmod +x /tmp/start.sh
 CMD /tmp/start.sh; touch /tmp/buh; tail -f /tmp/buh
-# CMD touch /tmp/buh; tail -f /tmp/buh
-
-# CMD /home/web/bin/start.sh; tail -f /var/log/nginx/access.log
-# CMD touch /tmp/buh; tail -f /tmp/buh
