@@ -22,7 +22,7 @@ RUN add-apt-repository universe
 RUN apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit postgresql-client catdoc poppler-utils sudo wget unzip vim
 RUN apt-get install -y bash curl patch bzip2 gawk libssl-dev make libc6-dev patch openssl curl zlib1g zlib1g-dev libyaml-dev libsqlite3-dev sqlite3 libgmp-dev libgdbm-dev libncurses5-dev bison pkg-config libffi-dev libgmp-dev libreadline6-dev
 RUN apt-get install -y libxslt-dev libxml2-dev libpq-dev
-RUN apt-get install -y postgresql nodejs npm
+RUN apt-get install -y postgresql python
 RUN apt-get upgrade -y
 
 RUN service postgresql start &&\
@@ -34,7 +34,7 @@ USER web
 
 # Set up folders
 RUN mkdir /home/web/bin
-RUN mkdir /home/web/apps
+# RUN mkdir /home/web/apps
 
 # Build ruby
 RUN cd /tmp && \
@@ -59,11 +59,34 @@ RUN cd /home/web && \
 
 ADD database.yml /home/web/bankit/config/database.yml
 
+# Install node
+# RUN cd /tmp && \
+#     wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.xz && \
+#     tar xf node-v8.9.4-linux-x64.tar.xz && \
+#     mv ./node-v8.9.4-linux-x64 /home/web/apps/ && \
+#     ln -s /home/web/apps/node-v8.9.4-linux-x64/bin/* /home/web/bin && \
+#     cd /home/web/bankit && \
+#     /home/web/bin/npm install
+
+RUN /bin/bash -l -c "cd /tmp && \
+                     wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.xz && \
+                     tar xf node-v8.9.4-linux-x64.tar.xz && \
+                     mv ./node-v8.9.4-linux-x64 /home/web/apps/ && \
+                     ln -s /home/web/apps/node-v8.9.4-linux-x64/bin/* /home/web/bin && \
+                     cd /home/web/bankit && \
+                     /home/web/bin/npm install "
+
+
+# RUN /bin/bash -l -c "export PATH=$PATH:$HOME/gems/bin &&\
+#                      cd /home/web/apps/webapp &&\
+#                      bundle install --without test development && \
+#                      bundle update"
+
 # used to bust the cache and get the latest copy from master
 RUN echo 'deploy <<>>'
 
 USER web
-RUN cd /home/web/bankit && \
+RUN cd home/web/bankit && \
     git checkout master && \
     git pull
 
