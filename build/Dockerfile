@@ -59,24 +59,6 @@ RUN cd /home/web && \
 
 ADD database.yml /home/web/bankit/config/database.yml
 
-# Install node
-# RUN cd /tmp && \
-#     wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.xz && \
-#     tar xf node-v8.9.4-linux-x64.tar.xz && \
-#     mv ./node-v8.9.4-linux-x64 /home/web/apps/ && \
-#     ln -s /home/web/apps/node-v8.9.4-linux-x64/bin/* /home/web/bin && \
-#     cd /home/web/bankit && \
-#     /home/web/bin/npm install
-
-RUN /bin/bash -l -c "cd /tmp && \
-                     wget https://nodejs.org/dist/v8.9.4/node-v8.9.4-linux-x64.tar.xz && \
-                     tar xf node-v8.9.4-linux-x64.tar.xz && \
-                     mv ./node-v8.9.4-linux-x64 /home/web/apps/ && \
-                     ln -s /home/web/apps/node-v8.9.4-linux-x64/bin/* /home/web/bin && \
-                     cd /home/web/bankit && \
-                     /home/web/bin/npm install "
-
-
 # RUN /bin/bash -l -c "export PATH=$PATH:$HOME/gems/bin &&\
 #                      cd /home/web/apps/webapp &&\
 #                      bundle install --without test development && \
@@ -88,6 +70,7 @@ RUN echo 'deploy <<>>'
 USER web
 RUN cd home/web/bankit && \
     git checkout master && \
+    rm package-lock.json && \
     git pull
 
 EXPOSE 80

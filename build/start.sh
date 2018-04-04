@@ -7,6 +7,5 @@ service postgresql start
                   sleep 2 &&\
                   bundle install  --without test development &&\
                   RAILS_ENV=production rake db:migrate &&\
-                  npm install &&\
-                  yarn build &&\
+                  RAILS_ENV=production rake db:seed &&\
                   RAILS_ENV=production rails server"
