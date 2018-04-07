@@ -1,5 +1,5 @@
 # /bin/sh
-service postgresql start
+# service postgresql start
 
 # get and import database backup
 
