@@ -8,6 +8,8 @@ git add public/*
 git commit -m 'JS files Build for production deploy.'
 git push origin
 
+cp config/database.yml build/
+
 cp build/Dockerfile build/Dockerfile-bak
 
 # update docker file to break cache at point were the code is pulled
