@@ -41,6 +41,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-# group :production do
-#   gem 'tzinfo-data'
-# end
+gem 'tzinfo-data'
