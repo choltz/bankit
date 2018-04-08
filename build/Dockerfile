@@ -60,6 +60,11 @@ RUN cd /home/web && \
 
 RUN touch /home/web/bankit/log
 
+USER root
+RUN chown -R web:web /home/web/bankit/log
+
+USER web
+
 ADD database.yml /home/web/bankit/config/database.yml
 
 # RUN /bin/bash -l -c "export PATH=$PATH:$HOME/gems/bin &&\
