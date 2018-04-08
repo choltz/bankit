@@ -58,6 +58,8 @@ RUN cd /home/web && \
     /home/web/apps/ruby/bin/gem install bundler && \
     /home/web/apps/ruby/bin/bundle install
 
+RUN touch /home/web/bankit/log
+
 ADD database.yml /home/web/bankit/config/database.yml
 
 # RUN /bin/bash -l -c "export PATH=$PATH:$HOME/gems/bin &&\
