@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/choltz/lightpipe.git
-  revision: 387c5f3538222b0b7f00980714b82ef749602832
-  specs:
-    lightpipe (0.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -143,7 +137,6 @@ PLATFORMS
 DEPENDENCIES
   byebug
   factory_bot_rails
-  lightpipe!
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
   rails (~> 5.1.4)
@@ -155,4 +148,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.16.0
+   1.16.2

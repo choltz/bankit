@@ -19,7 +19,7 @@ RUN apt-get -y update &&\
 RUN add-apt-repository universe
 
 # Setup base dependencies
-RUN apt-get install -y build-essential emacs24-nox htop links2 curl git-core monit catdoc poppler-utils sudo wget unzip vim
+RUN apt-get install -y build-essential emacs htop links2 curl git-core monit catdoc poppler-utils sudo wget unzip vim
 RUN apt-get install -y bash curl patch bzip2 gawk libssl-dev make libc6-dev patch openssl curl zlib1g zlib1g-dev libyaml-dev libsqlite3-dev sqlite3 libgmp-dev libgdbm-dev libncurses5-dev bison pkg-config libffi-dev libgmp-dev libreadline6-dev
 RUN apt-get install -y libxslt-dev libxml2-dev libpq-dev
 RUN apt-get install -y python
